@@ -1,0 +1,12 @@
+body {
+    margin-top: 30px;
+}
+
+.jumbotron {
+    height: 100%;
+    padding-top: 10px;
+}
+
+.jumbotron.h1, .jumbotron h1 {
+    font-size: 2em;
+}

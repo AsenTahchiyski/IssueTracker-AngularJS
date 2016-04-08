@@ -1,0 +1,31 @@
+<form class="form-horizontal"  novalidate ui-validation-submit="save()" name="loginForm">
+    <fieldset>
+        <legend>Login</legend>
+        <div class="form-group" ui-validation-show-errors>
+            <label for="username" class="col-lg-2 control-label">User name</label>
+            <div class="col-lg-6">
+                <input type="text" class="form-control" id="username" name="name" placeholder="User name"
+                       ng-model="user.name" required="required" name="name">
+                <ui-validation-error-messages />
+            </div>
+        </div>
+
+        <div class="form-group" ui-validation-show-errors>
+            <label for="password" class="col-lg-2 control-label">Password</label>
+            <div class="col-lg-6">
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                       ng-model="user.password" required="required" min-length="6" max-length="100" name="pass">
+                <ui-validation-error-messages />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-2">
+                <button type="reset" class="btn btn-default" ng-click="go('/')">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-click="login(user)"
+                        ng-disabled="loginForm.$invalid">Login
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

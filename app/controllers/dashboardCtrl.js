@@ -1,15 +1,13 @@
-'use strict';
+"use strict";
 
 angular.module('issueTracker.dashboardCtrl', ['ngRoute'])
-
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/dashboard', {
             templateUrl: 'app/templates/dashboard.html',
-            controller: 'dashboardCtrl'
+            controller: 'DashboardCtrl'
         });
     }])
 
-    .controller('dashboardCtrl', ['$scope',
-        function DashboardCtrl($scope) {
-            
-        }]);
+    .controller('DashboardCtrl', ['$scope', function DashboardCtrl($scope) {
+
+    }]);
