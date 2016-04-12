@@ -1,4 +1,4 @@
-<div ng-if="sessionStorage['authToken']">
+<div ng-if="loggedIn">
     <legend>Dashboard</legend>
     <div class="jumbotron">
         <table class="table table-striped">
@@ -29,6 +29,6 @@
         </table>
     </div>
 </div>
-<div ng-if="!sessionStorage['authToken']">
+<div ng-if="!loggedIn">
     <div ng-include="'app/templates/login-or-register.html'"></div>
 </div>

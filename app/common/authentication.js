@@ -8,7 +8,7 @@ angular.module('issueTracker.authentication', [])
         function ($http, $q, BASE_URL) {
             function registerUser(user) {
                 var deferred = $q.defer();
-                $http.post(BASE_URL + 'Users/Register', user)
+                $http.post(BASE_URL + 'Account/Register', user)
                     .then(function(success) {
                         deferred.resolve(success.data);
                     }, function(error) {
@@ -20,7 +20,11 @@ angular.module('issueTracker.authentication', [])
 
             function loginUser(user) {
                 var deferred = $q.defer();
-                $http.post(BASE_URL + 'Users/Login', user)
+                var data = 'grant_type=password&username=' + user.email + '&password=' + user.password;
+                var config = {
+                    headers:  { 'Content-Type': 'application/x-www-form-urlencoded' }
+                };
+                $http.post(BASE_URL + 'Token', data, config)
                     .then(function(success) {
                         deferred.resolve(success);
                     }, function(error) {

@@ -10,4 +10,4 @@ angular.module('issueTracker', [
     .config(['$routeProvider', function ($routeProvider) {
         // $routeProvider.otherwise({redirectTo: '/'});
     }])
-    .constant('BASE_URL', 'http://softuni-social-network.azurewebsites.net/api/');
+    .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/api/');

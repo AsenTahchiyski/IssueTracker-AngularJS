@@ -29,6 +29,15 @@ angular.module('issueTracker.dashboardCtrl', ['ngRoute', 'issueTracker.authentic
                     });
             };
 
+            $scope.logout = function() {
+                sessionStorage['authToken'] = undefined;
+                $scope.loggedIn = false;
+                $scope.go('#/');
+                $route.reload();
+            };
+
+            $scope.loggedIn = !!sessionStorage['authToken'];
+
             $scope.go = function (path) {
                 $location.path(path);
             };
