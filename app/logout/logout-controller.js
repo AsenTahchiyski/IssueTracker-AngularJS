@@ -11,14 +11,19 @@ angular
         '$scope',
         '$location',
         'currentUser',
-        function LogoutCtrl($scope, $location, currentUser) {
-            $scope.logout = function() {
+        '$timeout',
+        function ($scope, $location, currentUser, $timeout) {
+            $scope.logout = function () {
                 // TODO: show notification
                 currentUser.authToken = undefined;
                 currentUser.isAdmin = false;
                 currentUser.isLogged = false;
                 currentUser.username = undefined;
                 sessionStorage.removeItem('authToken');
-                $location.path('/login');
+                $timeout(function() {
+                    $scope.$apply(function() {
+                        $location.path('/login');
+                    });
+                }, 100);
             };
         }]);
