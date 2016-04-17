@@ -1,13 +1,23 @@
-"use strict";
+'use strict';
 
-angular.module('issueTracker', [
+angular
+    .module('issueTracker', [
         'ngRoute',
-        'issueTracker.dashboardCtrl',
         'ui.bootstrap.validation',
-        'issueTracker.issuesCtrl',
-        'issueTracker.projectsCtrl'
+        'issueTracker.services.userAuth',
+        'issueTracker.controllers.loginRegister',
+        'issueTracker.controllers.dashboard',
+        'issueTracker.navbarDirective',
+        'issueTracker.controllers.logout'
     ])
-    .config(['$routeProvider', function ($routeProvider) {
-        // $routeProvider.otherwise({redirectTo: '/'});
+    .config(['$routeProvider', function($routeProvider) {
+        $routeProvider.otherwise({redirectTo: '/login'});
     }])
-    .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/api/');
+    .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
+    .value('currentUser', {
+        username: undefined,
+        authToken: undefined,
+        isAdmin: false,
+        isLogged: false
+    });
+

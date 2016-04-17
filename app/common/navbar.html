@@ -1,0 +1,16 @@
+<div class="navbar-header">
+    <a href="#/" class="navbar-brand">Issue Tracking System</a>
+    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+</div>
+<div class="navbar-collapse collapse" id="navbar-main">
+    <ul class="nav navbar-nav" ng-show="hasLogged()">
+        <li><a href="#/">Dashboard</a></li>
+        <li><a href="#/projects">Projects</a></li>
+        <li><a href="#/issues">Issues</a></li>
+        <li><a href="#/logout" ng-controller="LogoutCtrl" ng-click="logout()">Logout</a></li>
+    </ul>
+</div>
