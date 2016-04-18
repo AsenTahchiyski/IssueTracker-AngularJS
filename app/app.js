@@ -4,11 +4,13 @@ angular
     .module('issueTracker', [
         'ngRoute',
         'ui.bootstrap.validation',
-        'issueTracker.services.userAuth',
+        'issueTracker.services.users',
         'issueTracker.controllers.loginRegister',
         'issueTracker.controllers.dashboard',
         'issueTracker.navbarDirective',
-        'issueTracker.controllers.logout'
+        'issueTracker.controllers.logout',
+        'issueTracker.services.projects',
+        'issueTracker.controllers.projects'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

@@ -10,7 +10,7 @@ angular
             templateUrl: 'app/common/navbar.html',
             link: function (scope) {
                 scope.hasLogged = function() {
-                    return !!currentUser.authToken;
+                    return !!sessionStorage['authToken'];
                 }
             }
         }

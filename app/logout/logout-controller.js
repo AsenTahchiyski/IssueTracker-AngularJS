@@ -16,9 +16,9 @@ angular
             $scope.logout = function () {
                 // TODO: show notification
                 currentUser.authToken = undefined;
+                currentUser.username = undefined;
                 currentUser.isAdmin = false;
                 currentUser.isLogged = false;
-                currentUser.username = undefined;
                 sessionStorage.removeItem('authToken');
                 $timeout(function() {
                     $scope.$apply(function() {

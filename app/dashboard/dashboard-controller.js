@@ -11,9 +11,21 @@ angular
     .controller('DashboardCtrl', [
         '$scope',
         '$location',
-        'currentUser',
-        function ($scope, $location, currentUser) {
-            if (!currentUser.isLogged) {
+        'projectsService',
+        function ($scope, $location, projectsService) {
+            if (!sessionStorage['authToken']) {
                 $location.path('/login');
+            }
+            
+            $scope.getProject = function (id) {
+                projectsService.getById(id);
+            };
+            
+            $scope.getAll = function () {
+                projectsService.getAll();
+            };
+            
+            $scope.getByFilter = function (filter, value, pageSize, pageNumber) {
+                projectsService.getByFilter(filter, value, pageSize, pageNumber);
             }
         }]);

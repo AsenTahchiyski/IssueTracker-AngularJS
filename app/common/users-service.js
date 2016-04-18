@@ -1,8 +1,8 @@
 "use strict";
 
 angular
-    .module('issueTracker.services.userAuth', [])
-    .factory('userAuth', [
+    .module('issueTracker.services.users', [])
+    .factory('usersService', [
         '$http',
         '$q',
         'BASE_URL',

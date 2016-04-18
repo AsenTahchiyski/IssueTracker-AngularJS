@@ -10,12 +10,12 @@ angular
     }])
     .controller('LoginRegisterCtrl', [
         '$scope',
-        'userAuth',
+        'usersService',
         'currentUser',
         '$location',
-        function LoginRegister($scope, userAuth, currentUser, $location) {
+        function LoginRegister($scope, usersService, currentUser, $location) {
             $scope.login = function (loginUser) {
-                userAuth.login(loginUser)
+                usersService.login(loginUser)
                     .then(function (success) {
                         currentUser.username = loginUser.email;
                         currentUser.authToken = success.data['access_token'];
@@ -29,7 +29,7 @@ angular
             };
 
             $scope.register = function (regUser) {
-                userAuth.register(regUser)
+                usersService.register(regUser)
                     .then(function () {
                         $scope.login(regUser);
                     }, function (error) {
