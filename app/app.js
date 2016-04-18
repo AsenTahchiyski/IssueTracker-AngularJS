@@ -11,7 +11,8 @@ angular
         'issueTracker.controllers.logout',
         'issueTracker.services.projects',
         'issueTracker.controllers.projects',
-        'issueTracker.services.headerBuilder'
+        'issueTracker.services.headerBuilder',
+        'issueTracker.services.issues'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

@@ -34,7 +34,7 @@ angular
                 return deferred.promise;
             }
 
-            function getByFilter (filter, value, pageSize, pageNumber) {
+            function getByFilter(filter, value, pageSize, pageNumber) {
                 // build URL
                 var requestUrl = BASE_URL + 'projects/?filter=' + filter + '="' + value + '"';
                 if (pageSize) {
@@ -57,7 +57,7 @@ angular
                 return deferred.promise;
             }
 
-            function add (name, description, leadId, labels, priorities) {
+            function add(name, description, leadId, labels, priorities) {
                 // build project object
                 var project = {
                     Description: description,
@@ -66,15 +66,15 @@ angular
                     Name: name,
                     Priorities: []
                 };
-                
-                labels.forEach(function(l) {
-                    project.Labels.push({Name:l});
+
+                labels.forEach(function (l) {
+                    project.Labels.push({Name: l});
                 });
-                
-                priorities.forEach(function(p) {
-                    project.Priorities.push({Name:p});
+
+                priorities.forEach(function (p) {
+                    project.Priorities.push({Name: p});
                 });
-                
+
                 var projectKey = '';
                 var nameSplit = name.split(/\s+/g);
                 nameSplit.forEach(function (word) {
@@ -94,7 +94,7 @@ angular
                 return deferred.promise;
             }
 
-            function edit (id, name, description, leadId, labels, priorities) {
+            function edit(id, name, description, leadId, labels, priorities) {
                 // build project object
                 var project = {
                     Description: description,
@@ -104,12 +104,12 @@ angular
                     Priorities: []
                 };
 
-                labels.forEach(function(l) {
-                    project.Labels.push({Name:l});
+                labels.forEach(function (l) {
+                    project.Labels.push({Name: l});
                 });
 
-                priorities.forEach(function(p) {
-                    project.Priorities.push({Name:p});
+                priorities.forEach(function (p) {
+                    project.Priorities.push({Name: p});
                 });
 
                 var deferred = $q.defer();
