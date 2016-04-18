@@ -74,7 +74,7 @@ angular
                 return deferred.promise;
             }
 
-            function addProject (name, description, projectKey, labels, priorities, leadId) {
+            function add (name, description, leadId, labels, priorities) {
                 var config = {
                     headers: {
                         'Authorization': 'Bearer ' + sessionStorage['authToken'],
@@ -82,17 +82,69 @@ angular
                     }
                 };
 
-                var projectToAdd = {
+                // build project object
+                var project = {
                     Description: description,
-                    Labels: labels,
-                    Lead: leadId, // should be object
+                    Labels: [],
+                    LeadId: leadId,
                     Name: name,
-                    Priorities: priorities,
-                    ProjectKey: projectKey
+                    Priorities: []
                 };
+                
+                labels.forEach(function(l) {
+                    project.Labels.push({Name:l});
+                });
+                
+                priorities.forEach(function(p) {
+                    project.Priorities.push({Name:p});
+                });
+                
+                var projectKey = '';
+                var nameSplit = name.split(/\s+/g);
+                nameSplit.forEach(function (word) {
+                    projectKey += word.charAt(0).toUpperCase();
+                });
+                project.ProjectKey = projectKey;
 
                 var deferred = $q.defer();
-                $http.post(BASE_URL + 'projects/', config)
+                $http.post(BASE_URL + 'projects/', project, config)
+                    .then(function (success) {
+                        deferred.resolve(success);
+                        console.log(success);
+                    }, function (error) {
+                        deferred.reject(error);
+                    });
+
+                return deferred.promise;
+            }
+
+            function edit (id, name, description, leadId, labels, priorities) {
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
+                        'Content-Type': 'application/json'
+                    }
+                };
+
+                // build project object
+                var project = {
+                    Description: description,
+                    Labels: [],
+                    LeadId: leadId,
+                    Name: name,
+                    Priorities: []
+                };
+
+                labels.forEach(function(l) {
+                    project.Labels.push({Name:l});
+                });
+
+                priorities.forEach(function(p) {
+                    project.Priorities.push({Name:p});
+                });
+
+                var deferred = $q.defer();
+                $http.put(BASE_URL + 'projects/' + id, project, config)
                     .then(function (success) {
                         deferred.resolve(success);
                         console.log(success);
@@ -106,7 +158,9 @@ angular
             return {
                 getById: getById,
                 getAll: getAll,
-                getByFilter: getByFilter
+                getByFilter: getByFilter,
+                add: add,
+                edit: edit
             }
         }
     ]);

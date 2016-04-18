@@ -44,5 +44,13 @@ angular
             
             $scope.makeAdmin = function(userId) {
                 usersService.makeAdmin(userId);
-            }
+            };
+
+            $scope.addProject = function(name, description, leadId, labels, priorities) {
+                projectsService.add(name, description, leadId, labels, priorities);
+            };
+            
+            $scope.editProject = function(id, name, description, leadId, labels, priorities) {
+                projectsService.edit(id, name, description, leadId, labels, priorities);
+            };
         }]);
