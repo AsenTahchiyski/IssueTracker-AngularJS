@@ -6,16 +6,11 @@ angular
         '$http',
         '$q',
         'BASE_URL',
-        function projectsService($http, $q, BASE_URL) {
+        'headerService',
+        function projectsService($http, $q, BASE_URL, headerService) {
             function getById(id) {
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                        'Content-Type': 'application/json'
-                    }
-                };
                 var deferred = $q.defer();
-                $http.get(BASE_URL + 'projects/' + id, config)
+                $http.get(BASE_URL + 'projects/' + id, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
                         console.log(success.data);
@@ -27,14 +22,8 @@ angular
             }
 
             function getAll() {
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                        'Content-Type': 'application/json'
-                    }
-                };
                 var deferred = $q.defer();
-                $http.get(BASE_URL + 'projects/', config)
+                $http.get(BASE_URL + 'projects/', headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                         console.log(success);
@@ -46,12 +35,6 @@ angular
             }
 
             function getByFilter (filter, value, pageSize, pageNumber) {
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                        'Content-Type': 'application/json'
-                    }
-                };
                 // build URL
                 var requestUrl = BASE_URL + 'projects/?filter=' + filter + '="' + value + '"';
                 if (pageSize) {
@@ -63,7 +46,7 @@ angular
                 }
 
                 var deferred = $q.defer();
-                $http.get(requestUrl, config)
+                $http.get(requestUrl, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                         console.log(success);
@@ -75,13 +58,6 @@ angular
             }
 
             function add (name, description, leadId, labels, priorities) {
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                        'Content-Type': 'application/json'
-                    }
-                };
-
                 // build project object
                 var project = {
                     Description: description,
@@ -107,7 +83,7 @@ angular
                 project.ProjectKey = projectKey;
 
                 var deferred = $q.defer();
-                $http.post(BASE_URL + 'projects/', project, config)
+                $http.post(BASE_URL + 'projects/', project, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                         console.log(success);
@@ -119,13 +95,6 @@ angular
             }
 
             function edit (id, name, description, leadId, labels, priorities) {
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                        'Content-Type': 'application/json'
-                    }
-                };
-
                 // build project object
                 var project = {
                     Description: description,
@@ -144,7 +113,7 @@ angular
                 });
 
                 var deferred = $q.defer();
-                $http.put(BASE_URL + 'projects/' + id, project, config)
+                $http.put(BASE_URL + 'projects/' + id, project, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                         console.log(success);

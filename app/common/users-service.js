@@ -6,28 +6,8 @@ angular
         '$http',
         '$q',
         'BASE_URL',
-        function userAuth($http, $q, BASE_URL) {
-            function getHeader(type) {
-                var header = {};
-                switch (type) {
-                    case 'auth':
-                        return {
-                            headers: {'Authorization': 'Bearer ' + sessionStorage['authToken']}
-                        };
-                    case 'content':
-                        return {
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        };
-                    case 'both':
-                        return {
-                            headers: {
-                                'Authorization': 'Bearer ' + sessionStorage['authToken'],
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            }
-                        };
-                }
-            }
-
+        'headerService',
+        function userAuth($http, $q, BASE_URL, headerService) {
             function register(user) {
                 var deferred = $q.defer();
                 $http.post(BASE_URL + 'api/Account/Register', user)
@@ -43,7 +23,7 @@ angular
             function login(user) {
                 var deferred = $q.defer();
                 var data = 'grant_type=password&username=' + user.email + '&password=' + user.password;
-                $http.post(BASE_URL + 'api/Token', data, getHeader('content'))
+                $http.post(BASE_URL + 'api/Token', data, headerService.getWWWContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                     }, function (error) {
@@ -55,7 +35,7 @@ angular
 
             function getAll() {
                 var deferred = $q.defer();
-                $http.get(BASE_URL + 'users/', getHeader('auth'))
+                $http.get(BASE_URL + 'users/', headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
                         console.log(success.data)
@@ -68,7 +48,7 @@ angular
 
             function getCurrent() {
                 var deferred = $q.defer();
-                $http.get(BASE_URL + 'users/me/', getHeader('auth'))
+                $http.get(BASE_URL + 'users/me/', headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
                         console.log(success.data)
@@ -88,7 +68,7 @@ angular
 
                     var deferred = $q.defer();
                     var data = 'UserId=' + userId;
-                    $http.put(BASE_URL + 'users/makeadmin', data, getHeader('both'))
+                    $http.put(BASE_URL + 'users/makeadmin', data, headerService.getAuthAndWWWContentHeader())
                         .then(function (success) {
                             deferred.resolve(success);
                         }, function (error) {
@@ -109,7 +89,7 @@ angular
 
                 var deferred = $q.defer();
                 var data = 'OldPassword=' + oldPass + '&NewPassword=' + newPass + '&ConfirmPassword=' + confirmNewPass;
-                $http.post(BASE_URL + 'api/Account/ChangePassword', data, getHeader('both'))
+                $http.post(BASE_URL + 'api/Account/ChangePassword', data, headerService.getAuthAndWWWContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                     }, function (error) {

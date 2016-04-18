@@ -10,7 +10,8 @@ angular
         'issueTracker.navbarDirective',
         'issueTracker.controllers.logout',
         'issueTracker.services.projects',
-        'issueTracker.controllers.projects'
+        'issueTracker.controllers.projects',
+        'issueTracker.services.headerBuilder'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});
