@@ -14,7 +14,8 @@ angular
         'projectsService',
         'usersService',
         'issuesService',
-        function ($scope, $location, projectsService, usersService, issuesService) {
+        'labelsService',
+        function ($scope, $location, projectsService, usersService, issuesService, labelsService) {
             if (!sessionStorage['authToken']) {
                 $location.path('/login');
             }
@@ -89,5 +90,9 @@ angular
 
             $scope.addCommentToIssue = function (issueId, text) {
                 issuesService.addComment(issueId, text);
+            };
+            
+            $scope.getLabelsFiltered = function(filter) {
+                labelsService.getFiltered(filter);
             };
         }]);
