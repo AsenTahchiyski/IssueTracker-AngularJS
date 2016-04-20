@@ -35,6 +35,9 @@
         </tr>
         </tbody>
     </table>
+    <uib-pagination total-items="totalIssues" ng-model="totalIssuesCurrentPage" max-size="maxSize"
+                    class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+    <pre>Page: {{totalIssuesCurrentPage}} / {{numPages}}</pre>
 </div>
 
 <div class="jumbotron">
@@ -55,6 +58,9 @@
         </tr>
         </tbody>
     </table>
+    <uib-pagination total-items="totalLeadProjects" ng-model="totalLeadProjectsCurrentPage" max-size="maxSize"
+                    class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+    <pre>Page: {{pageNumberProjectsLead}} / {{totalLeadProjects}}</pre>
 </div>
 
 <div class="jumbotron">
@@ -75,6 +81,10 @@
         </tr>
         </tbody>
     </table>
+    <uib-pagination total-items="totalProjectsIssue" ng-model="totalProjectsIssueCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
+    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
 </div>
+
+
 </body>
 </html>

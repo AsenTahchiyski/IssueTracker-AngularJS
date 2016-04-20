@@ -21,25 +21,29 @@ angular
                 $location.path('/login');
             }
 
-            $scope.getIssues = function getIssues(pageNumber) {
-                issuesService.getAssignedToCurrentUser('DueDate', 1, 1)
+            $scope.getIssues = function getIssues() {
+                $scope.totalIssuesCurrentPage = 1;
+                issuesService.getAssignedToCurrentUser('DueDate', ISSUES_PER_PAGE, $scope.totalIssuesCurrentPage)
                     .then(function (success) {
                         $scope.assignedIssues = success;
+                        $scope.totalAssignedIssues = success.length;
                         return success;
                     });
             };
-            $scope.getIssues();
+            $scope.getIssues(totalIssuesCurrentPage);
 
             // and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
-            $scope.getProjects = function (pageNumber) {
+            $scope.totalProjectsIssue = 0;
+            $scope.getLedProjects = function (pageNumberProjectsLead) {
                 $scope.projectsWithIssuesAssigned = [];
                 usersService.getCurrent()
                     .then(function (currentUserData) {
                         // get current user
-                        projectsService.getByFilter('Lead.Username', currentUserData.Username, ISSUES_PER_PAGE, pageNumber)
+                        projectsService.getByFilter('Lead.Username', currentUserData.Username, ISSUES_PER_PAGE, pageNumberProjectsLead)
                             .then(function (projects) {
                                 // get projects led
                                 $scope.projectsLead = projects.data.Projects;
+                                $scope.totalLeadProjects = projects.data.Projects.length;
                                 issuesService.getAssignedToCurrentUser('DueDate', 1, 1)
                                     .then(function (issuesAssigned) {
                                         // get all issues assigned
@@ -48,7 +52,7 @@ angular
                                                 // get the projects for them
                                                 projectsService.getById(i.Project.Id)
                                                     .then(function (success) {
-                                                        console.log(success);
+                                                        $scope.totalProjectsIssue++;
                                                         $scope.projectsWithIssuesAssigned.push(success);
                                                     }, function (error) {
                                                         console.error(error);
@@ -63,5 +67,5 @@ angular
                             });
                     });
             };
-            $scope.getProjects(1);
+            $scope.getLedProjects(1);
         }]);
