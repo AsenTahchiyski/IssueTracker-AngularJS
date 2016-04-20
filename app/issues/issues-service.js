@@ -12,10 +12,8 @@ angular
                 var deferred = $q.defer();
                 $http.get(BASE_URL + 'projects/' + projectId + '/issues', headerService.getAuthHeader())
                     .then(function (success) {
-                        console.log(success.data);
                         deferred.resolve(success.data);
                     }, function (error) {
-                        console.error(error);
                         deferred.reject(error);
                     });
 
@@ -35,10 +33,8 @@ angular
                 var deferred = $q.defer();
                 $http.get(url, headerService.getAuthHeader())
                     .then(function (success) {
-                        console.log(success.data.Issues);
                         deferred.resolve(success.data.Issues);
                     }, function (error) {
-                        console.error(error);
                         deferred.reject(error);
                     });
 
@@ -58,10 +54,8 @@ angular
                 var deferred = $q.defer();
                 $http.get(url, headerService.getAuthHeader())
                     .then(function (success) {
-                        console.log(success.data.Issues);
                         deferred.resolve(success.data.Issues);
                     }, function (error) {
-                        console.error(error);
                         deferred.reject(error);
                     });
 
@@ -72,10 +66,8 @@ angular
                 var deferred = $q.defer();
                 $http.get(BASE_URL + 'issues/' + id, headerService.getAuthHeader())
                     .then(function (success) {
-                        console.log(success.data);
                         deferred.resolve(success.data);
                     }, function (error) {
-                        console.error(error);
                         deferred.reject(error);
                     });
 
@@ -103,7 +95,6 @@ angular
                 $http.post(BASE_URL + 'issues/', issue, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -131,7 +122,6 @@ angular
                 $http.put(BASE_URL + 'issues/' + id, issue, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -146,7 +136,6 @@ angular
                 $http.put(url, undefined, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -160,7 +149,6 @@ angular
                 $http.get(url, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -175,7 +163,6 @@ angular
                 $http.post(url, {Text:text}, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });

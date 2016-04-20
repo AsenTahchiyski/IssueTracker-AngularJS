@@ -51,7 +51,6 @@ angular
                 $http.get(BASE_URL + 'users/me/', headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data)
                     }, function (error) {
                         deferred.reject(error);
                     });

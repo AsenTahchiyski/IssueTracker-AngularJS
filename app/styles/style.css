@@ -3,10 +3,18 @@ body {
 }
 
 .jumbotron {
-    height: 100%;
-    padding-top: 10px;
+    height: auto;
+    overflow: auto;
 }
 
 .jumbotron.h1, .jumbotron h1 {
     font-size: 2em;
+}
+
+div.jumbotron.ng-scope {
+    padding: 10px 20px;
+}
+
+h3, h4 {
+    text-align: center;
 }

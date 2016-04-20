@@ -13,7 +13,6 @@ angular
                 $http.get(BASE_URL + 'projects/' + id, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -26,7 +25,6 @@ angular
                 $http.get(BASE_URL + 'projects/', headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
-                        console.log(success);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -36,20 +34,12 @@ angular
 
             function getByFilter(filter, value, pageSize, pageNumber) {
                 // build URL
-                var requestUrl = BASE_URL + 'projects/?filter=' + filter + '="' + value + '"';
-                if (pageSize) {
-                    requestUrl += '&pageSize=' + pageSize;
-                }
-
-                if (pageNumber) {
-                    requestUrl += '&pageNumber=' + pageNumber;
-                }
-
+                var requestUrl = BASE_URL + 'projects/?' + 'pageSize=' + pageSize + '&pageNumber=' + pageNumber +
+                                            '&filter=' + filter + '=="' + value + '"';
                 var deferred = $q.defer();
                 $http.get(requestUrl, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
-                        console.log(success);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -86,7 +76,6 @@ angular
                 $http.post(BASE_URL + 'projects/', project, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
-                        console.log(success);
                     }, function (error) {
                         deferred.reject(error);
                     });
@@ -116,7 +105,6 @@ angular
                 $http.put(BASE_URL + 'projects/' + id, project, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
-                        console.log(success);
                     }, function (error) {
                         deferred.reject(error);
                     });
