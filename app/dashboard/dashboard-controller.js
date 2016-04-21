@@ -21,25 +21,42 @@ angular
                 $location.path('/login');
             }
 
+            $scope.projectsParams1 = {
+                'startPage': 1,
+                'pageSize': ISSUES_PER_PAGE,
+                'filter': ''
+            };
+
+            $scope.projectsParams2 = {
+                'startPage': 1,
+                'pageSize': ISSUES_PER_PAGE,
+                'filter': ''
+            };
+
+            $scope.projectsParams3 = {
+                'startPage': 1,
+                'pageSize': ISSUES_PER_PAGE,
+                'filter': ''
+            };
+
             $scope.itemsPerPage = ISSUES_PER_PAGE;
             $scope.getIssues = function getIssues(issuesPageNumber) {
-                issuesService.getAssignedToCurrentUser('DueDate', ISSUES_PER_PAGE, issuesPageNumber)
+                issuesService.getAssignedToCurrentUser('DueDate', $scope.projectsParams1.pageSize, $scope.projectsParams1.startPage)
                     .then(function (success) {
                         $scope.assignedIssues = success.Issues;
-                        $scope.assignedIssuesTotalNumber = success.length;
+                        $scope.assignedIssuesTotalNumber = success.count;
                     });
             };
             $scope.getIssues(1);
 
             // and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
-
             $scope.getLedProjects = function (pageNumberProjectsLead) {
                 $scope.getLedProjectsCurrentPage = pageNumberProjectsLead;
                 $scope.projectsWithIssuesAssigned = [];
                 usersService.getCurrent()
                     .then(function (currentUserData) {
                         // get current user
-                        projectsService.getByFilter('Lead.Username', currentUserData.Username, ISSUES_PER_PAGE, pageNumberProjectsLead)
+                        projectsService.getByFilter('Lead.Username', currentUserData.Username, $scope.projectsParams2.pageSize, $scope.projectsParams2.startPage)
                             .then(function (projects) {
                                 $scope.totalLedProjects = projects.data.TotalCount;
                                 // get projects led
@@ -56,8 +73,8 @@ angular
             };
             
             $scope.totalProjectsIssue = 0;
-            $scope.getProjectsWithAssignedIssues = function (pageNumberProjectIssues) {
-                issuesService.getAssignedToCurrentUser('DueDate', ISSUES_PER_PAGE, pageNumberProjectIssues)
+            $scope.getProjectsWithAssignedIssues = function () {
+                issuesService.getAssignedToCurrentUser('DueDate', $scope.projectsParams3.pageSize, $scope.projectsParams3.startPage)
                     .then(function (issuesAssigned) {
                         // get all issues assigned
                         $scope.projectIDsWithIssuesAssigned = [];
@@ -68,7 +85,8 @@ angular
                             });
                         }
             
-                        $scope.totalProjectsIssue = $scope.projectIDsWithIssuesAssigned.length || 0;
+                        $scope.totalProjectsIssues = $scope.projectIDsWithIssuesAssigned.count || 0;
+                        console.log( $scope.projectIDsWithIssuesAssigned);
                         if ($scope.projectIDsWithIssuesAssigned) {
                             // get the unique projects
                             $scope.projectsWithIssuesAssigned = [];

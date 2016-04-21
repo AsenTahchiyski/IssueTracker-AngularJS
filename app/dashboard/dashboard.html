@@ -1,54 +1,64 @@
 <h3>Dashboard</h3>
 <uib-tabset active="activeJustified" justified="true">
-    <!--<uib-tab index="0" heading="Assigned Issues">-->
-        <!--<div class="jumbotron">-->
-            <!--<table class="table table-striped">-->
-                <!--<thead>-->
-                <!--<tr>-->
-                    <!--<td>Name</td>-->
-                    <!--<td>Project</td>-->
-                    <!--<td>Due Date</td>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--<tr ng-repeat="assignedIssue in assignedIssues">-->
-                    <!--<td>{{assignedIssue.Title}}</td>-->
-                    <!--<td>{{assignedIssue.Project.Name}}</td>-->
-                    <!--<td>{{assignedIssue.DueDate | date:'dd MMM yyyy'}}</td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
+    <uib-tab index="0" heading="Assigned Issues">
+        <div class="jumbotron">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Project</td>
+                    <td>Due Date</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="assignedIssue in assignedIssues">
+                    <td>{{assignedIssue.Title}}</td>
+                    <td>{{assignedIssue.Project.Name}}</td>
+                    <td>{{assignedIssue.DueDate | date:'dd MMM yyyy'}}</td>
+                </tr>
+                </tbody>
+            </table>
             <!--<uib-pagination total-items="assignedIssuesTotalNumber" ng-model="bigCurrentPage"-->
                             <!--items-per-page="itemsPerPage" ng-change="getIssues(bigCurrentPage)"-->
                             <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
             <!--</uib-pagination>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</uib-tab>-->
-    <!--<uib-tab index="1" heading="Projects Led">-->
-        <!--<div class="jumbotron">-->
-            <!--<table class="table table-striped">-->
-                <!--<thead>-->
-                <!--<tr>-->
-                    <!--<td>Name</td>-->
-                    <!--<td>Lead</td>-->
-                    <!--<td>Priorities</td>-->
-                <!--</tr>-->
-                <!--</thead>-->
-                <!--<tbody>-->
-                <!--<tr ng-repeat="projectLead in projectsLead" ng-click="goToProject(projectLead.Id)">-->
-                    <!--<td>{{projectLead.Name}}</td>-->
-                    <!--<td>{{projectLead.Lead.Username}}</td>-->
-                    <!--<td>{{projectLead.Priorities | arrayFilter:', '}}</td>-->
-                <!--</tr>-->
-                <!--</tbody>-->
-            <!--</table>-->
+            <uib-pagination total-items="assignedIssuesTotalNumber" ng-model="projectsParams1.startPage" max-size="maxSize" class="pagination-sm"
+                            boundary-links="true" rotate="false" items-per-page="itemsPerPage"
+                            ng-change="getIssues(projectsParams1.startPage)"
+                            ng-if="assignedIssuesTotalNumber > itemsPerPage">
+            </uib-pagination>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Projects Led">
+        <div class="jumbotron">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Lead</td>
+                    <td>Priorities</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="projectLead in projectsLead" ng-click="goToProject(projectLead.Id)">
+                    <td>{{projectLead.Name}}</td>
+                    <td>{{projectLead.Lead.Username}}</td>
+                    <td>{{projectLead.Priorities | arrayFilter:', '}}</td>
+                </tr>
+                </tbody>
+            </table>
             <!--<uib-pagination total-items="totalLedProjects" ng-model="bigCurrentPage"-->
                             <!--items-per-page="itemsPerPage" ng-change="getLedProjects(bigCurrentPage)"-->
                             <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
             <!--</uib-pagination>-->
-        <!--</div>-->
-    <!--</uib-tab>-->
+            <uib-pagination total-items="totalLedProjects" ng-model="projectsParams2.startPage" max-size="maxSize" class="pagination-sm"
+                            boundary-links="true" rotate="false" items-per-page="itemsPerPage"
+                            ng-change="getLedProjects(projectsParams2.startPage)"
+                            ng-if="totalLedProjects > itemsPerPage">
+            </uib-pagination>
+        </div>
+    </uib-tab>
     <uib-tab index="2" heading="Projects With Assigned Issues">
         <div class="jumbotron">
             <table class="table table-striped">
@@ -71,9 +81,11 @@
                             <!--items-per-page="itemsPerPage" ng-change="getProjectsWithAssignedIssues(bigCurrentPage)"-->
                             <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
             <!--</uib-pagination>-->
-            <uib-pagination total-items="totalProjectsIssue" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm"
+            <uib-pagination total-items="totalProjectsIssues" ng-model="projectsParams3.startPage" max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
-                            ng-change="getProjectsWithAssignedIssues(bigCurrentPage)"></uib-pagination>
+                            ng-change="getProjectsWithAssignedIssues(projectsParams3.startPage)"
+            ng-if="totalProjectsIssues > itemsPerPage">
+            </uib-pagination>
         </div>
     </uib-tab>
 </uib-tabset>
