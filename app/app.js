@@ -16,9 +16,7 @@ angular
         'issueTracker.services.labels',
         'issueTracker.filters.date',
         'issueTracker.filters.array',
-        'issueTracker.controllers.bootstrapPagination',
-        'ui.bootstrap.pagination',
-        'ui.bootstrap.paging'
+        'ui.bootstrap'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

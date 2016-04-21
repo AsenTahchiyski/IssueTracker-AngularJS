@@ -16,8 +16,7 @@ angular
         'issuesService',
         'labelsService',
         'ISSUES_PER_PAGE',
-        'BASE_URL',
-        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ISSUES_PER_PAGE, BASE_URL) {
+        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ISSUES_PER_PAGE) {
             if (!sessionStorage['authToken']) {
                 $location.path('/login');
             }
@@ -87,10 +86,4 @@ angular
                     });
             };
             $scope.getProjectsWithAssignedIssues(1);
-
-            // paging stuff
-            $scope.pageParams = {
-                'startPage': 1,
-                'pageSize': ISSUES_PER_PAGE
-            };
         }]);
