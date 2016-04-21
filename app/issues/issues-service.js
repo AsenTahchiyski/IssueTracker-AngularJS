@@ -54,7 +54,7 @@ angular
                 var deferred = $q.defer();
                 $http.get(url, headerService.getAuthHeader())
                     .then(function (success) {
-                        deferred.resolve(success.data.Issues);
+                        deferred.resolve(success.data);
                     }, function (error) {
                         deferred.reject(error);
                     });

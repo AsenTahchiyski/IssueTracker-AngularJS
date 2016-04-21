@@ -35,9 +35,10 @@
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="totalIssues" ng-model="totalIssuesCurrentPage" max-size="maxSize"
-                    class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
-    <pre>Page: {{totalIssuesCurrentPage}} / {{numPages}}</pre>
+    <uib-pagination total-items="assignedIssuesTotalNumber" ng-model="bigCurrentPage"
+                    items-per-page="itemsPerPage" ng-change="getIssues(bigCurrentPage)"
+                    max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">
+    </uib-pagination>
 </div>
 
 <div class="jumbotron">
@@ -58,9 +59,10 @@
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="totalLeadProjects" ng-model="totalLeadProjectsCurrentPage" max-size="maxSize"
-                    class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
-    <pre>Page: {{pageNumberProjectsLead}} / {{totalLeadProjects}}</pre>
+    <uib-pagination total-items="totalLedProjects" ng-model="bigCurrentPage"
+                    items-per-page="itemsPerPage" ng-change="getLedProjects(bigCurrentPage)"
+                    max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">
+    </uib-pagination>
 </div>
 
 <div class="jumbotron">
@@ -81,10 +83,11 @@
         </tr>
         </tbody>
     </table>
-    <uib-pagination total-items="totalProjectsIssue" ng-model="totalProjectsIssueCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></uib-pagination>
-    <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+    <uib-pagination total-items="totalProjectsIssue" ng-model="bigCurrentPage"
+                    items-per-page="itemsPerPage" ng-change="getProjectsWithAssignedIssues(bigCurrentPage)"
+                    max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">
+    </uib-pagination>
 </div>
-
 
 </body>
 </html>
