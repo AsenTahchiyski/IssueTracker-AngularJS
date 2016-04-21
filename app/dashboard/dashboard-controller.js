@@ -16,7 +16,8 @@ angular
         'issuesService',
         'labelsService',
         'ISSUES_PER_PAGE',
-        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ISSUES_PER_PAGE) {
+        'BASE_URL',
+        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ISSUES_PER_PAGE, BASE_URL) {
             if (!sessionStorage['authToken']) {
                 $location.path('/login');
             }
@@ -51,17 +52,30 @@ angular
             };
             $scope.getLedProjects(1);
 
+            $scope.goToProject = function (id) {
+                $location.path('projects/' + id)
+            };
+            
             $scope.totalProjectsIssue = 0;
             $scope.getProjectsWithAssignedIssues = function (pageNumberProjectIssues) {
                 issuesService.getAssignedToCurrentUser('DueDate', ISSUES_PER_PAGE, pageNumberProjectIssues)
                     .then(function (issuesAssigned) {
                         // get all issues assigned
-                        if (issuesAssigned.length > 0) {
-                            issuesAssigned.forEach(function (i) {
-                                // get the projects for them
-                                projectsService.getById(i.Project.Id)
+                        $scope.projectIDsWithIssuesAssigned = [];
+                        if (issuesAssigned.Issues.length > 0) {
+                            issuesAssigned.Issues.forEach(function (i) {
+                                // get the projects id-s for them
+                                $scope.projectIDsWithIssuesAssigned[i.Project.Id] = i.Project.Id;
+                            });
+                        }
+            
+                        $scope.totalProjectsIssue = $scope.projectIDsWithIssuesAssigned.length || 0;
+                        if ($scope.projectIDsWithIssuesAssigned) {
+                            // get the unique projects
+                            $scope.projectsWithIssuesAssigned = [];
+                            $scope.projectIDsWithIssuesAssigned.forEach(function (id) {
+                                projectsService.getById(id)
                                     .then(function (success) {
-                                        $scope.totalProjectsIssue++;
                                         $scope.projectsWithIssuesAssigned.push(success);
                                     }, function (error) {
                                         console.error(error);

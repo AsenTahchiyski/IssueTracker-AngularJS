@@ -5,9 +5,11 @@ angular
     .filter('arrayFilter', [
         function () {
             return function (array, separator) {
-                return array.map(function(e) {
-                    return e.Name;
-                }).join(separator);
+                if(array) {
+                    return array.map(function(e) {
+                        return e.Name;
+                    }).join(separator);
+                }
             };
         }
     ]);

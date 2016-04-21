@@ -18,3 +18,17 @@ div.jumbotron.ng-scope {
 h3, h4 {
     text-align: center;
 }
+
+.projectTitles {
+    font-weight: bold;
+}
+
+.projectsFontSize {
+    font-size: 1.2em;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}

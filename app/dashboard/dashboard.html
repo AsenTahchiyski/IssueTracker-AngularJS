@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-      integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
-<body>
 <h3>Dashboard</h3>
 <div class="jumbotron">
     <h4>Issues Assigned to You</h4>
@@ -52,7 +34,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="projectLead in projectsLead">
+        <tr ng-repeat="projectLead in projectsLead" ng-click="goToProject(projectLead.Id)">
             <td>{{projectLead.Name}}</td>
             <td>{{projectLead.Lead.Username}}</td>
             <td>{{projectLead.Priorities | arrayFilter:', '}}</td>
@@ -76,7 +58,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="projectIssue in projectsWithIssuesAssigned">
+        <tr ng-repeat="projectIssue in projectsWithIssuesAssigned" ng-click="goToProject(projectIssue.Id)">
             <td>{{projectIssue.Name}}</td>
             <td>{{projectIssue.Lead.Username}}</td>
             <td>{{projectIssue.Priorities | arrayFilter:', '}}</td>
@@ -88,6 +70,3 @@
                     max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">
     </uib-pagination>
 </div>
-
-</body>
-</html>

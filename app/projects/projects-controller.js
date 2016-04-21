@@ -5,7 +5,7 @@ angular
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/projects/:id', {
             controller: 'ProjectsCtrl',
-            template: '<button ng-click="getById()">Load</button>'
+            templateUrl: 'app/projects/project-template.html'
         });
     }])
     .controller('ProjectsCtrl', [
@@ -14,7 +14,11 @@ angular
         'projectsService',
         function ProjectsCtrl($scope, $routeParams, projectsService) {
             $scope.getById = function() {
-                return projectsService.getById($routeParams.id);
+                projectsService.getById($routeParams.id)
+                    .then(function(success) {
+                        $scope.currentProject = success;
+                    });
             };
+            $scope.getById();
         }
     ]);

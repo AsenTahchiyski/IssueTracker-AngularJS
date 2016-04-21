@@ -1,0 +1,9 @@
+<h3>{{currentProject.Name}}</h3>
+<p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentProject.Name}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentProject.Id}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Key:</span> {{currentProject.Key}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentProject.Description}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Lead:</span> {{currentProject.Lead.Username}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Lead ID:</span> {{currentProject.Lead.Id}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Priorities:</span> {{currentProject.Priorities | arrayFilter: ', '}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentProject.Labels | arrayFilter: ', '}}</p>
