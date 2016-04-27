@@ -1,0 +1,10 @@
+<h3>{{currentIssue.Title}}</h3>
+<p class="projectsFontSize"><span class="projectTitles">Issue Title:</span> {{currentIssue.Title}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Priority:</span> {{currentIssue.Priority.Name}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentIssue.Labels | arrayFilter: ', '}}</p>

@@ -11,17 +11,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="assignedIssue in assignedIssues">
+                <tr ng-repeat="assignedIssue in assignedIssues" ng-click="goToIssue(assignedIssue.Id)">
                     <td>{{assignedIssue.Title}}</td>
                     <td>{{assignedIssue.Project.Name}}</td>
                     <td>{{assignedIssue.DueDate | date:'dd MMM yyyy'}}</td>
                 </tr>
                 </tbody>
             </table>
-            <!--<uib-pagination total-items="assignedIssuesTotalNumber" ng-model="bigCurrentPage"-->
-                            <!--items-per-page="itemsPerPage" ng-change="getIssues(bigCurrentPage)"-->
-                            <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
-            <!--</uib-pagination>-->
             <uib-pagination total-items="assignedIssuesTotalNumber" ng-model="projectsParams1.startPage" max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getIssues(projectsParams1.startPage)"
@@ -48,10 +44,6 @@
                 </tr>
                 </tbody>
             </table>
-            <!--<uib-pagination total-items="totalLedProjects" ng-model="bigCurrentPage"-->
-                            <!--items-per-page="itemsPerPage" ng-change="getLedProjects(bigCurrentPage)"-->
-                            <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
-            <!--</uib-pagination>-->
             <uib-pagination total-items="totalLedProjects" ng-model="projectsParams2.startPage" max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getLedProjects(projectsParams2.startPage)"
@@ -77,10 +69,6 @@
                 </tr>
                 </tbody>
             </table>
-            <!--<uib-pagination total-items="totalProjectsIssue" ng-model="bigCurrentPage"-->
-                            <!--items-per-page="itemsPerPage" ng-change="getProjectsWithAssignedIssues(bigCurrentPage)"-->
-                            <!--max-size="9" boundary-links="true" template-url="app/common/pagination-template.html">-->
-            <!--</uib-pagination>-->
             <uib-pagination total-items="totalProjectsIssues" ng-model="projectsParams3.startPage" max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getProjectsWithAssignedIssues(projectsParams3.startPage)"

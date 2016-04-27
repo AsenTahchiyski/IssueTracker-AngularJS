@@ -71,6 +71,10 @@ angular
             $scope.goToProject = function (id) {
                 $location.path('projects/' + id)
             };
+
+            $scope.goToIssue = function (id) {
+                $location.path('issues/' + id);
+            };
             
             $scope.totalProjectsIssue = 0;
             $scope.getProjectsWithAssignedIssues = function () {
@@ -86,7 +90,6 @@ angular
                         }
             
                         $scope.totalProjectsIssues = $scope.projectIDsWithIssuesAssigned.count || 0;
-                        console.log( $scope.projectIDsWithIssuesAssigned);
                         if ($scope.projectIDsWithIssuesAssigned) {
                             // get the unique projects
                             $scope.projectsWithIssuesAssigned = [];
