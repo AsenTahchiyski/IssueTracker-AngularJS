@@ -3,8 +3,7 @@
 angular
     .module('issueTracker.navbarDirective', [])
     .directive('navbar', [
-        'currentUser',
-        function navbar(currentUser) {
+        function navbar() {
         return {
             restrict: 'A',
             templateUrl: 'app/common/navbar.html',

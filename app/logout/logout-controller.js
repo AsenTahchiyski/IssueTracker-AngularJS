@@ -10,15 +10,9 @@ angular
     .controller('LogoutCtrl', [
         '$scope',
         '$location',
-        'currentUser',
         '$timeout',
-        function ($scope, $location, currentUser, $timeout) {
+        function ($scope, $location, $timeout) {
             $scope.logout = function () {
-                // TODO: show notification
-                currentUser.authToken = undefined;
-                currentUser.username = undefined;
-                currentUser.isAdmin = false;
-                currentUser.isLogged = false;
                 sessionStorage.removeItem('authToken');
                 $timeout(function() {
                     $scope.$apply(function() {

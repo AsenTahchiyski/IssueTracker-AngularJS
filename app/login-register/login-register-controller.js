@@ -11,17 +11,12 @@ angular
     .controller('LoginRegisterCtrl', [
         '$scope',
         'usersService',
-        'currentUser',
         '$location',
-        function LoginRegister($scope, usersService, currentUser, $location) {
+        function LoginRegister($scope, usersService, $location) {
             $scope.login = function (loginUser) {
                 usersService.login(loginUser)
                     .then(function (success) {
-                        currentUser.username = loginUser.email;
-                        currentUser.authToken = success.data['access_token'];
                         sessionStorage['authToken'] = success.data['access_token'];
-                        currentUser.isAdmin = loginUser.isAdmin || false;
-                        currentUser.isLogged = true;
                         $location.path('/');
                     }, function (error) {
                         console.error(error);
