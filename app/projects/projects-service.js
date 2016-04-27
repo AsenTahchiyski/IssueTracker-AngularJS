@@ -35,7 +35,7 @@ angular
             function getByFilter(filter, value, pageSize, pageNumber) {
                 // build URL
                 var requestUrl = BASE_URL + 'projects/?' + 'pageSize=' + pageSize + '&pageNumber=' + pageNumber +
-                                            '&filter=' + filter + '=="' + value + '"';
+                    '&filter=' + filter + '=="' + value + '"';
                 var deferred = $q.defer();
                 $http.get(requestUrl, headerService.getAuthAndJSONContentHeader())
                     .then(function (success) {
@@ -84,25 +84,23 @@ angular
             }
 
             function edit(id, name, description, leadId, labels, priorities) {
-                // build project object
-                var project = {
-                    Description: description,
-                    Labels: [],
-                    LeadId: leadId,
-                    Name: name,
-                    Priorities: []
-                };
+                var data = 'Name=' + name + '&Description=' + description;
+                if(labels.length) {
+                    for (var i = 0; i < labels.length; i++) {
+                        data += '&labels[' + i + '].Name=' + labels[i];
+                    }
+                }
 
-                labels.forEach(function (l) {
-                    project.Labels.push({Name: l});
-                });
+                if(priorities.length) {
+                    for (var j = 0; j < priorities.length; j++) {
+                        data += '&priorities[' + j + '].Name=' + priorities[j];
+                    }
+                }
 
-                priorities.forEach(function (p) {
-                    project.Priorities.push({Name: p});
-                });
+                data += '&LeadId=' + leadId;
 
                 var deferred = $q.defer();
-                $http.put(BASE_URL + 'projects/' + id, project, headerService.getAuthAndJSONContentHeader())
+                $http.put(BASE_URL + 'projects/' + id, data, headerService.getAuthAndWWWContentHeader())
                     .then(function (success) {
                         deferred.resolve(success);
                     }, function (error) {

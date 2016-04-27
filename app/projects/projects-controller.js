@@ -12,7 +12,8 @@ angular
         '$scope',
         '$routeParams',
         'projectsService',
-        function ProjectsCtrl($scope, $routeParams, projectsService) {
+        '$location',
+        function ProjectsCtrl($scope, $routeParams, projectsService, $location) {
             $scope.getById = function() {
                 projectsService.getById($routeParams.id)
                     .then(function(success) {
@@ -20,5 +21,9 @@ angular
                     });
             };
             $scope.getById();
+
+            $scope.goToEdit = function() {
+                $location.path('/projects/' + $routeParams.id + '/edit');
+            }
         }
     ]);

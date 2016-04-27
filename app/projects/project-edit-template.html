@@ -1,0 +1,19 @@
+<h3>Editing {{editedProject.Name}}</h3>
+
+<label for="projectEditName" class="projectsFontSize">Project Name</label>
+<input type="text" id="projectEditName" ng-model="editedProject.Name" />
+
+<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{editedProject.Id}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Key:</span> {{editedProject.ProjectKey}}</p>
+
+<label for="projectEditDescription" class="projectsFontSize">Project Description</label>
+<input type="text" id="projectEditDescription" ng-model="editedProject.Description" /><br />
+
+<label for="projectEditLeadId" class="projectsFontSize">Project Lead Id</label>
+<input type="text" id="projectEditLeadId" ng-model="editedProject.LeadId" />
+
+<p class="projectsFontSize"><span class="projectTitles">Lead:</span> {{editedProject.Lead.Username}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Priorities:</span> {{editedProject.Priorities | arrayFilter: ', '}}</p>
+<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{editedProject.Labels | arrayFilter: ', '}}</p>
+
+<button ng-click="edit()" class="btn btn-default">Save</button>

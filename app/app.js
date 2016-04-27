@@ -17,9 +17,10 @@ angular
         'issueTracker.filters.date',
         'issueTracker.filters.array',
         'ui.bootstrap',
-        'issueTracker.controllers.issues'
+        'issueTracker.controllers.issues',
+        'issueTracker.controllers.projectsEdit'
     ])
-    .config(['$routeProvider', function($routeProvider) {
+    .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});
     }])
     .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
