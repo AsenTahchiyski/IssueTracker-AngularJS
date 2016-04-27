@@ -18,12 +18,12 @@
                 </tr>
                 </tbody>
             </table>
-            <uib-pagination total-items="assignedIssuesTotalNumber" ng-model="projectsParams1.startPage" max-size="maxSize" class="pagination-sm"
+            <uib-pagination total-items="assignedIssuesTotalNumber" ng-model="projectsParams1.startPage"
+                            max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getIssues(projectsParams1.startPage)"
                             ng-if="assignedIssuesTotalNumber > itemsPerPage">
             </uib-pagination>
-            </div>
         </div>
     </uib-tab>
     <uib-tab index="1" heading="Projects Led">
@@ -44,7 +44,8 @@
                 </tr>
                 </tbody>
             </table>
-            <uib-pagination total-items="totalLedProjects" ng-model="projectsParams2.startPage" max-size="maxSize" class="pagination-sm"
+            <uib-pagination total-items="totalLedProjects" ng-model="projectsParams2.startPage"
+                            max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getLedProjects(projectsParams2.startPage)"
                             ng-if="totalLedProjects > itemsPerPage">
@@ -62,17 +63,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="projectIssue in projectsWithIssuesAssigned" ng-click="goToProject(projectIssue.Id)">
+                <tr ng-repeat="projectIssue in totalProjectsWithIssuesAssigned" ng-click="goToProject(projectIssue.Id)">
                     <td>{{projectIssue.Name}}</td>
                     <td>{{projectIssue.Lead.Username}}</td>
                     <td>{{projectIssue.Priorities | arrayFilter:', '}}</td>
                 </tr>
                 </tbody>
             </table>
-            <uib-pagination total-items="totalProjectsIssues" ng-model="projectsParams3.startPage" max-size="maxSize" class="pagination-sm"
+            <uib-pagination total-items="totalProjectsIssues" ng-model="projectsParams3.startPage"
+                            max-size="maxSize" class="pagination-sm"
                             boundary-links="true" rotate="false" items-per-page="itemsPerPage"
                             ng-change="getProjectsWithAssignedIssues(projectsParams3.startPage)"
-            ng-if="totalProjectsIssues > itemsPerPage">
+                            ng-if="totalProjectsIssues > itemsPerPage">
             </uib-pagination>
         </div>
     </uib-tab>

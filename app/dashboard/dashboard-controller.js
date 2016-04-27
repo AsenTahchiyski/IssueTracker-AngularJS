@@ -40,23 +40,25 @@ angular
             };
 
             $scope.itemsPerPage = ISSUES_PER_PAGE;
-            $scope.getIssues = function getIssues(issuesPageNumber) {
+
+            // Panel with all issues assigned to the current user
+            $scope.getIssues = function getIssues() {
                 issuesService.getAssignedToCurrentUser('DueDate', $scope.projectsParams1.pageSize, $scope.projectsParams1.startPage)
                     .then(function (success) {
                         $scope.assignedIssues = success.Issues;
-                        $scope.assignedIssuesTotalNumber = success.count;
+                        $scope.assignedIssuesTotalNumber = success.TotalCount;
                     });
             };
-            $scope.getIssues(1);
+            $scope.getIssues();
 
-            // and a panel with all the projects that you are associated with (you have an assigned issue in them or you are a project leader)
-            $scope.getLedProjects = function (pageNumberProjectsLead) {
-                $scope.getLedProjectsCurrentPage = pageNumberProjectsLead;
+            // Panel with projects led by the current user
+            $scope.getLedProjects = function () {
                 $scope.projectsWithIssuesAssigned = [];
                 usersService.getCurrent()
                     .then(function (currentUserData) {
                         // get current user
-                        projectsService.getByFilter('Lead.Username', currentUserData.Username, $scope.projectsParams2.pageSize, $scope.projectsParams2.startPage)
+                        projectsService.getByFilter('Lead.Username', currentUserData.Username,
+                            $scope.projectsParams2.pageSize, $scope.projectsParams2.startPage)
                             .then(function (projects) {
                                 $scope.totalLedProjects = projects.data.TotalCount;
                                 // get projects led
@@ -66,7 +68,7 @@ angular
                             });
                     });
             };
-            $scope.getLedProjects(1);
+            $scope.getLedProjects();
 
             $scope.goToProject = function (id) {
                 $location.path('projects/' + id)
@@ -75,36 +77,37 @@ angular
             $scope.goToIssue = function (id) {
                 $location.path('issues/' + id);
             };
-            
-            $scope.totalProjectsIssue = 0;
+
+            // Panel with all projects that have issues assigned to the current user
             $scope.getProjectsWithAssignedIssues = function () {
+                $scope.totalProjectsWithIssuesAssigned = [];
                 issuesService.getAssignedToCurrentUser('DueDate', $scope.projectsParams3.pageSize, $scope.projectsParams3.startPage)
                     .then(function (issuesAssigned) {
                         // get all issues assigned
-                        $scope.projectIDsWithIssuesAssigned = [];
+                        var uniqueProjectIds = [];
                         if (issuesAssigned.Issues.length > 0) {
                             issuesAssigned.Issues.forEach(function (i) {
                                 // get the projects id-s for them
-                                $scope.projectIDsWithIssuesAssigned[i.Project.Id] = i.Project.Id;
+                                uniqueProjectIds[i.Project.Id] = i.Project.Id;
                             });
                         }
-            
-                        $scope.totalProjectsIssues = $scope.projectIDsWithIssuesAssigned.count || 0;
-                        if ($scope.projectIDsWithIssuesAssigned) {
+
+                        if (uniqueProjectIds) {
                             // get the unique projects
-                            $scope.projectsWithIssuesAssigned = [];
-                            $scope.projectIDsWithIssuesAssigned.forEach(function (id) {
+                            uniqueProjectIds.forEach(function (id) {
                                 projectsService.getById(id)
                                     .then(function (success) {
-                                        $scope.projectsWithIssuesAssigned.push(success);
+                                        $scope.totalProjectsWithIssuesAssigned.push(success);
                                     }, function (error) {
                                         console.error(error);
                                     })
-                            })
+                            });
                         }
+
+                        $scope.totalProjectsIssues = $scope.totalProjectsWithIssuesAssigned.count || 0;
                     }, function (error) {
                         console.error(error);
-                    });
+                    })
             };
-            $scope.getProjectsWithAssignedIssues(1);
+            $scope.getProjectsWithAssignedIssues();
         }]);
