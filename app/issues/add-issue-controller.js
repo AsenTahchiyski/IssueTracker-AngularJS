@@ -49,45 +49,8 @@ angular
                     console.error(error);
                 });
 
-            // get all labels
-            labelsService.getFiltered()
-                .then(function (success) {
-                    $scope.allLabels = success;
-                });
-
             // mass auto-complete stuff
             $scope.dirty = {};
-
-            // function suggest_label(term) {
-            //     var q = term.toLowerCase().trim();
-            //     var results = [];
-            //
-            //     var labels = $scope.allLabels;
-            //     for (var i = 0; i < labels.length && results.length < 10; i++) {
-            //         var label = labels[i];
-            //         if (label.Name.toLowerCase().indexOf(q) === 0)
-            //             results.push({label: label.Name, value: lhs + label.Name});
-            //     }
-            //
-            //     return results;
-            // }
-            //
-            // $scope.autocomplete_options = {
-            //     suggest: suggest_label
-            // };
-            //
-            // function suggest_label_delimited(term) {
-            //     var index = term.lastIndexOf(','),
-            //         lhs = term.substring(0, index + 1),
-            //         rhs = term.substring(index + 1),
-            //         suggestions = suggest_label(rhs);
-            //
-            //     suggestions.forEach(function (s) {
-            //         s.label = lhs + s.label;
-            //     });
-            //
-            //     return suggestions;
-            // }
 
             var suggestLabelRemoteAndDelimited = function (term) {
                 var ix = term.lastIndexOf(','),
@@ -98,7 +61,6 @@ angular
                 deferred.resolve(labelsService.getFiltered(rhs)
                     .then(function (response) {
                         var labels = response;
-                        console.log(labels);
                         var result = [];
                         labels.forEach(function (l) {
                             result.push({label: l.Name, value: lhs + l.Name});
