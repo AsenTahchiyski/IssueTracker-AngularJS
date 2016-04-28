@@ -9,11 +9,10 @@ angular
         'headerService',
         function labelsService($http, $q, BASE_URL, headerService) {
             function getFiltered(filter) {
-                var url = BASE_URL + '/labels/?filter=' + filter;
+                var url = BASE_URL + 'labels/?filter=' + (filter || '');
                 var deferred = $q.defer();
                 $http.get(url, headerService.getAuthHeader())
                     .then(function (success) {
-                        console.log(success.data);
                         deferred.resolve(success.data);
                     }, function (error) {
                         console.error(error);

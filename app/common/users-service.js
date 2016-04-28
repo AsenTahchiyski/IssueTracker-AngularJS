@@ -7,7 +7,7 @@ angular
         '$q',
         'BASE_URL',
         'headerService',
-        function userAuth($http, $q, BASE_URL, headerService) {
+        function usersService($http, $q, BASE_URL, headerService) {
             function register(user) {
                 var deferred = $q.defer();
                 $http.post(BASE_URL + 'api/Account/Register', user)
@@ -38,7 +38,6 @@ angular
                 $http.get(BASE_URL + 'users/', headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
-                        console.log(success.data)
                     }, function (error) {
                         deferred.reject(error);
                     });

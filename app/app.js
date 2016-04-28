@@ -18,7 +18,8 @@ angular
         'issueTracker.filters.array',
         'ui.bootstrap',
         'issueTracker.controllers.issues',
-        'issueTracker.controllers.projectsEdit'
+        'issueTracker.controllers.projectsEdit',
+        'issueTracker.controllers.addIssue'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

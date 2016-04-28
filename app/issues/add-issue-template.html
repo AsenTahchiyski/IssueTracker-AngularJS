@@ -1,0 +1,100 @@
+<form class="form-horizontal">
+    <fieldset>
+        <h4>Add Issue</h4><br/>
+
+        <div class="form-group">
+            <label for="addIssueAssignee" class="col-lg-2 control-label">Assignee</label>
+            <div class="col-lg-5">
+                <select class="form-control" id="addIssueAssignee">
+                    <option value="{{user.Id}}" ng-repeat="user in allUsers">{{user.Username}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="disabledInput">Project Name</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="disabledInput" type="text" ng-model="addIssueProjectName" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="addIssueDueDate">Due Date</label>
+            <div class="col-lg-5">
+                <input class="form-control" type="date" id="addIssueDueDate" ng-model="issueToAdd.DueDate">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addIssuePriority" class="col-lg-2 control-label">Priority</label>
+            <div class="col-lg-5">
+                <select class="form-control" id="addIssuePriority" ng-model="issueToAdd.PriorityId">
+                    <option value="{{priority.Id}}" ng-repeat="priority in addIssueProjectPriorities">
+                        {{priority.Name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <!--<div class="form-group">-->
+        <!--<label class="control-label col-lg-2" for="addIssueLabel">Add Label</label>-->
+        <!--<div class="col-lg-5">-->
+        <!--<input type="text" class="form-control" id="addIssueLabel" ng-model="addIssueLabelInput">-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="form-group">-->
+        <!--<label class="control-label col-lg-2" for="addIssueLabel">Add Label (Test)</label>-->
+        <!--<div class="col-lg-5">-->
+        <!--<input type="text" ng-model="addIssueLabelInput" placeholder="Label name"-->
+        <!--uib-typeahead="label as label.Name for label in labelsResult | filter:{name:$viewValue}"-->
+        <!--id="addIssueLabel" class="form-control ng-pristine ng-valid ng-empty ng-touched col-lg-2"-->
+        <!--aria-autocomplete="list" aria-expanded="true" aria-owns="addIssueLabel" />-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <label class="control-label col-lg-2">Labels</label>
+            <div class="col-lg-5" ng-model="issueToAdd.Labels">
+                <span class="label label-default">Label1</span>
+                <span class="label label-default">Label2</span>
+                <span class="label label-default">Label3</span>
+                <span class="label label-default">Label4</span>
+                <span class="label label-default">Label1</span>
+                <span class="label label-default">Label2</span>
+                <span class="label label-default">Label3</span>
+                <span class="label label-default">Label4</span>
+                <span class="label label-default">Label1</span>
+                <span class="label label-default">Label2</span>
+                <span class="label label-default">Label3</span>
+                <span class="label label-default">Label4</span>
+                <span class="label label-default">Label1</span>
+                <span class="label label-default">Label2</span>
+                <span class="label label-default">Label3</span>
+                <span class="label label-default">Label4</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2" for="addIssueTitle">Title</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="addIssueTitle" ng-model="issueToAdd.Title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addIssueDescription" class="col-lg-2 control-label">Description</label>
+            <div class="col-lg-5">
+                <textarea class="form-control" rows="3" id="addIssueDescription"
+                          ng-model="issueToAdd.Description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-click="addIssue(issueToAdd)">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

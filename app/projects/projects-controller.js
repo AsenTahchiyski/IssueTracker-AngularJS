@@ -24,6 +24,10 @@ angular
 
             $scope.goToEdit = function() {
                 $location.path('/projects/' + $routeParams.id + '/edit');
-            }
+            };
+            
+            $scope.goToAddIssue = function() {
+                $location.path('/projects/' + $routeParams.id + '/add-issue')
+            };
         }
     ]);
