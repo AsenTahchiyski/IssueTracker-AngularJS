@@ -20,10 +20,13 @@ angular
         '$q',
         function AddIssueCtrl($scope, issuesService, $location, $routeParams, usersService, projectsService, labelsService, $sce, $q) {
             $scope.addIssue = function (issueToAdd) {
+                if($scope.dirty.value) {
+                    var labels = $scope.dirty.value.split(',');
+                }
+
                 issuesService.add(issueToAdd.Title, issueToAdd.Description, issueToAdd.DueDate,
-                    issueToAdd.ProjectId, issueToAdd.AssigneeId, issueToAdd.PriorityId, issueToAdd.Labels)
+                    $routeParams.id, issueToAdd.AssigneeId.Id, issueToAdd.PriorityId, labels)
                     .then(function (success) {
-                        console.log(success);
                         $location.path('/projects/' + $routeParams.id);
                     }, function (error) {
                         console.error(error);

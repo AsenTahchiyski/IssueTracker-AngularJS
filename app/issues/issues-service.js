@@ -90,7 +90,6 @@ angular
                 labels.forEach(function (l) {
                     issue.Labels.push({Name: l});
                 });
-
                 var deferred = $q.defer();
                 $http.post(BASE_URL + 'issues/', issue, headerService.getAuthHeader())
                     .then(function (success) {

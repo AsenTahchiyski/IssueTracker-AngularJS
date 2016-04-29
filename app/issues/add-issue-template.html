@@ -1,12 +1,24 @@
-<form class="form-horizontal">
+<div class="form-horizontal">
     <fieldset>
         <h4>Add Issue</h4><br/>
 
+        <!--<div class="form-group" ng-controller="AddIssueCtrl">-->
+            <!--<label for="addIssueAssignee" class="col-lg-2 control-label">Assignee</label>-->
+            <!--<div class="col-lg-5">-->
+                <!--<select class="form-control" name="addIssueAssignee" id="addIssueAssignee">-->
+                    <!--<option ng-model="issueToAdd.AssigneeId" ng-repeat="user in allUsers"-->
+                            <!--value="{{user.Id}}">{{user.Username}}</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+
         <div class="form-group">
-            <label for="addIssueAssignee" class="col-lg-2 control-label">Assignee</label>
+            <label  class="control-label col-lg-2" for="addIssueAssignee">Assignee</label>
             <div class="col-lg-5">
-                <select class="form-control" id="addIssueAssignee">
-                    <option value="{{user.Id}}" ng-repeat="user in allUsers">{{user.Username}}</option>
+                <select class="form-control" name="addIssueAssignee" id="addIssueAssignee"
+                        ng-options="user as user.Username for user in allUsers track by user.Id"
+                        ng-model="issueToAdd.AssigneeId">
+                    <option value="user.Id">{{user.Username}}</option>
                 </select>
             </div>
         </div>
@@ -35,13 +47,6 @@
                 </select>
             </div>
         </div>
-
-        <!--<div class="form-group">-->
-        <!--<label class="control-label col-lg-2" for="addIssueLabel">Add Label</label>-->
-        <!--<div class="col-lg-5">-->
-        <!--<input type="text" class="form-control" id="addIssueLabel" ng-model="addIssueLabelInput">-->
-        <!--</div>-->
-        <!--</div>-->
 
         <div class="form-group">
             <label for="addIssueLabelInput" class="col-lg-2 control-label">Labels</label>
@@ -98,4 +103,4 @@
             </div>
         </div>
     </fieldset>
-</form>
+</div>
