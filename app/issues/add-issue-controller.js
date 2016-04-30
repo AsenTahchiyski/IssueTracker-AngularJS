@@ -35,9 +35,6 @@ angular
 
             // get all users for the dropdown menu
             usersService.getAll().then(function (success) {
-                success.sort(function (a, b) {
-                    return a.Username.localeCompare(b.Username);
-                });
                 $scope.allUsers = success;
             }, function (error) {
                 console.error(error);

@@ -23,7 +23,7 @@ angular
             $scope.getById();
 
             $scope.editIssue = function() {
-                $location.path('/issues/' + $routeParams.id + '/edit');
+                $location.path('issues/' + $routeParams.id + '/edit');
             };
             
             issuesService.getComments($routeParams.id)

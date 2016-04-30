@@ -1,0 +1,99 @@
+<h3>Editing {{editedIssue.Title}}</h3>
+
+<div class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issueEditTitle">Issue Title</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="issueEditTitle" ng-model="editedIssue.Title">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issueId">Issue Id</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="issueId" type="text" ng-model="editedIssue.Id" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issueKey">Issue Key</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="issueKey" type="text" ng-model="editedIssue.IssueKey" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="issueDescription" class="col-lg-2 control-label projectsFontSize">Issue Description</label>
+            <div class="col-lg-5">
+                <textarea class="form-control" rows="3" id="issueDescription"
+                          ng-model="editedIssue.Description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="issueProjectName" class="col-lg-2 control-label projectsFontSize">Project Name</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="issueProjectName" ng-model="editedIssue.Project.Name" disabled=""/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issueAuthor">Author</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="issueAuthor" ng-model="editedIssue.Author.Username" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="editIssueAssignee">Assignee</label>
+            <div class="col-lg-5">
+                <select class="form-control" name="editIssueAssignee" id="editIssueAssignee"
+                        ng-options="user as user.Username for user in allUsers track by user.Id"
+                        ng-model="editedIssue.Assignee">
+                    <option value="user.Id" ng-selected="editedIssue.Assignee">{{user.Username}}</option>
+                </select>
+            </div>
+        </div>
+
+        <!--<div class="form-group">-->
+            <!--<label for="editIssueStatus" class="col-lg-2 control-label projectsFontSize">Status</label>-->
+            <!--<div class="col-lg-5">-->
+                <!--<select class="form-control" id="editIssueStatus" ng-model="currentStatus">-->
+                    <!--<option value="{{availableStatus.Id}}" ng-repeat="availableStatus in availableStatuses"-->
+                    <!--ng-selected="currentStatus">-->
+                        <!--{{availableStatus.Name}}-->
+                    <!--</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issuePriority">Priority</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="issuePriority" type="text" ng-model="editedIssue.Priority.Name" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="issueCurrentStatus">Status</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="issueCurrentStatus" type="text" ng-model="editedIssue.Status.Name" disabled="">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize">Labels</label>
+            <div class="col-lg-5">
+                <span class="label label-default" ng-repeat="label in editedIssue.Labels">{{label.Name}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button ng-click="edit(editedIssue)" class="btn btn-default">Save</button>
+            </div>
+        </div>
+    </fieldset>
+</div>

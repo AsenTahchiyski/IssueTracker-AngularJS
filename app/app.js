@@ -21,7 +21,8 @@ angular
         'issueTracker.controllers.projectsEdit',
         'issueTracker.controllers.addIssue',
         'MassAutoComplete',
-        'ngSanitize'
+        'ngSanitize',
+        'issueTracker.controllers.editIssue'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

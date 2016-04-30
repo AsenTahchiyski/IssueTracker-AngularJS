@@ -37,7 +37,10 @@ angular
                 var deferred = $q.defer();
                 $http.get(BASE_URL + 'users/', headerService.getAuthHeader())
                     .then(function (success) {
-                        deferred.resolve(success.data);
+                        var users = success.data.sort(function (a, b) {
+                            return a.Username.localeCompare(b.Username);
+                        });
+                        deferred.resolve(users);
                     }, function (error) {
                         deferred.reject(error);
                     });
