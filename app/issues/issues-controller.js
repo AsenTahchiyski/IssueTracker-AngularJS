@@ -13,7 +13,8 @@ angular
         '$routeParams',
         'issuesService',
         '$location',
-        function IssuesCtrl($scope, $routeParams, issuesService, $location) {
+        '$route',
+        function IssuesCtrl($scope, $routeParams, issuesService, $location, $route) {
             $scope.getById = function() {
                 issuesService.getById($routeParams.id)
                     .then(function(success) {
@@ -26,9 +27,19 @@ angular
                 $location.path('issues/' + $routeParams.id + '/edit');
             };
             
-            issuesService.getComments($routeParams.id)
-                .then(function(success) {
-                    $scope.issueComments = success;
-                })
+            function getComments() {
+                issuesService.getComments($routeParams.id)
+                    .then(function(success) {
+                        $scope.issueComments = success;
+                    });
+            }
+            getComments();
+
+            $scope.addComment = function() {
+                issuesService.addComment($routeParams.id, $scope.addCommentDescription);
+                getComments();
+                $route.reload();
+                $('.modal-backdrop').remove();
+            }
         }
     ]);

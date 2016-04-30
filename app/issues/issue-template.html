@@ -11,8 +11,10 @@
             <p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentIssue.Labels | arrayFilter: ','}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Status:</span> {{currentIssue.Status.Name}}</p>
+            <p><span class="projectTitles projectsFontSize">Labels:</span>
+                <span class="label label-default" ng-repeat="label in currentIssue.Labels">{{label.Name}}</span>
+            </p>
         </div>
         <div class="col-sm-6" class="form-horizontal">
             <h4>Comments</h4>
@@ -23,3 +25,23 @@
     </div>
 </div>
 <button ng-click="editIssue()" class="btn btn-default">Edit</button>
+<button class="btn btn-default" data-toggle="modal" data-target="#commentModal">Add Comment</button>
+
+<!--Modal add comment-->
+<div class="modal" id="commentModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add comment</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="3" ng-model="addCommentDescription" placeholder="Comment description"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="addComment()" type="submit" class="btn btn-primary" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
