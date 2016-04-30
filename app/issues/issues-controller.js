@@ -40,6 +40,13 @@ angular
                 getComments();
                 $route.reload();
                 $('.modal-backdrop').remove();
+            };
+
+            $scope.changeStatus = function() {
+                var newStatus = $scope.newStatus;
+                issuesService.changeStatus($routeParams.id, newStatus);
+                $('.modal-backdrop').remove();
+                $route.reload();
             }
         }
     ]);
