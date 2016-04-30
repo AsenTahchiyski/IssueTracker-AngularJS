@@ -1,11 +1,26 @@
-<h3>{{currentProject.Name}}</h3>
-<p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentProject.Name}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentProject.Id}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Key:</span> {{currentProject.Key}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentProject.Description}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Lead:</span> {{currentProject.Lead.Username}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Lead ID:</span> {{currentProject.Lead.Id}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Priorities:</span> {{currentProject.Priorities | arrayFilter: ', '}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentProject.Labels | arrayFilter: ', '}}</p>
+<div class="container">
+    <h3>{{currentProject.Name}}</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Project Details</h4>
+            <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentProject.Name}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentProject.Id}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Key:</span> {{currentProject.Key}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentProject.Description}}
+            </p>
+            <p class="projectsFontSize"><span class="projectTitles">Lead:</span> {{currentProject.Lead.Username}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Lead ID:</span> {{currentProject.Lead.Id}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Priorities:</span> {{currentProject.Priorities |
+                arrayFilter: ','}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentProject.Labels |
+                arrayFilter: ', '}}</p>
+        </div>
+        <div class="col-sm-6" class="form-horizontal">
+            <h4>Issues</h4>
+            <p ng-repeat="issue in currentProjIssues" class="projectsFontSize" ng-click="goToOwnIssue(issue.Id)">
+                Due Date: {{issue.DueDate | date:'dd MMM yyyy'}} --- Title: {{issue.Title}}</p>
+        </div>
+    </div>
+</div>
 <button ng-click="goToEdit()" class="btn btn-default">Edit</button>
 <button ng-click="goToAddIssue()" class="btn btn-default">Add Issue</button>

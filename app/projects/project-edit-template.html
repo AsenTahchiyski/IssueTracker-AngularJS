@@ -1,19 +1,70 @@
 <h3>Editing {{editedProject.Name}}</h3>
 
-<label for="projectEditName" class="projectsFontSize">Project Name</label>
-<input type="text" id="projectEditName" ng-model="editedProject.Name" />
+<!--<label for="projectEditName" class="projectsFontSize">Project Name</label>-->
+<!--<input type="text" id="projectEditName" ng-model="editedProject.Name" />-->
+<div class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectEditName">Project Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="projectEditName" ng-model="editedProject.Name">
+            </div>
+        </div>
 
-<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{editedProject.Id}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Key:</span> {{editedProject.ProjectKey}}</p>
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectId">Project Id:</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="projectId" type="text" ng-model="editedProject.Id" disabled="">
+            </div>
+        </div>
 
-<label for="projectEditDescription" class="projectsFontSize">Project Description</label>
-<input type="text" id="projectEditDescription" ng-model="editedProject.Description" /><br />
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectKey">Project Id:</label>
+            <div class="col-lg-5">
+                <input class="form-control" id="projectKey" type="text" ng-model="editedProject.ProjectKey" disabled="">
+            </div>
+        </div>
 
-<label for="projectEditLeadId" class="projectsFontSize">Project Lead Id</label>
-<input type="text" id="projectEditLeadId" ng-model="editedProject.LeadId" />
+        <div class="form-group">
+            <label for="projectDescription" class="col-lg-2 control-label projectsFontSize">Project Description</label>
+            <div class="col-lg-5">
+                <textarea class="form-control" rows="3" id="projectDescription"
+                          ng-model="editedProject.Description"></textarea>
+            </div>
+        </div>
 
-<p class="projectsFontSize"><span class="projectTitles">Lead:</span> {{editedProject.Lead.Username}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Priorities:</span> {{editedProject.Priorities | arrayFilter: ', '}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{editedProject.Labels | arrayFilter: ', '}}</p>
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectLead">Project Lead</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="projectLead" ng-model="editedProject.Lead.Username">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectLeadId">Project Lead Id</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="projectLeadId" ng-model="editedProject.LeadId">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="addIssuePriority" class="col-lg-2 control-label projectsFontSize">Priorities</label>
+            <div class="col-lg-5">
+                <select class="form-control" id="addIssuePriority" ng-model="editedProject.PriorityId">
+                    <option value="{{priority.Id}}" ng-repeat="priority in editedProject.Priorities">
+                        {{priority.Name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize">Labels</label>
+            <div class="col-lg-5">
+                <span class="label label-default" ng-repeat="label in editedProject.Labels">{{label.Name}}</span>
+            </div>
+        </div>
+    </fieldset>
+</div>
 
 <button ng-click="edit()" class="btn btn-default">Save</button>
