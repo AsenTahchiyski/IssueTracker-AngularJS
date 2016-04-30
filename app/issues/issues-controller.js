@@ -36,17 +36,21 @@ angular
             getComments();
 
             $scope.addComment = function() {
-                issuesService.addComment($routeParams.id, $scope.addCommentDescription);
-                getComments();
-                $route.reload();
-                $('.modal-backdrop').remove();
+                issuesService.addComment($routeParams.id, $scope.addCommentDescription)
+                    .then(function() {
+                        getComments();
+                        $('.modal-backdrop').remove();
+                        $route.reload();
+                    })
             };
 
             $scope.changeStatus = function() {
                 var newStatus = $scope.newStatus;
-                issuesService.changeStatus($routeParams.id, newStatus);
-                $('.modal-backdrop').remove();
-                $route.reload();
+                issuesService.changeStatus($routeParams.id, newStatus)
+                    .then(function() {
+                        $('.modal-backdrop').remove();
+                        $route.reload();
+                    })
             }
         }
     ]);
