@@ -12,7 +12,8 @@ angular
         '$scope',
         '$routeParams',
         'issuesService',
-        function IssuesCtrl($scope, $routeParams, issuesService) {
+        '$location',
+        function IssuesCtrl($scope, $routeParams, issuesService, $location) {
             $scope.getById = function() {
                 issuesService.getById($routeParams.id)
                     .then(function(success) {
@@ -20,5 +21,14 @@ angular
                     });
             };
             $scope.getById();
+
+            $scope.editIssue = function() {
+                $location.path('/issues/' + $routeParams.id + '/edit');
+            };
+            
+            issuesService.getComments($routeParams.id)
+                .then(function(success) {
+                    $scope.issueComments = success;
+                })
         }
     ]);

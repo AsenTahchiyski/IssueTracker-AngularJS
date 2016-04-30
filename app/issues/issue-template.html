@@ -1,10 +1,25 @@
-<h3>{{currentIssue.Title}}</h3>
-<p class="projectsFontSize"><span class="projectTitles">Issue Title:</span> {{currentIssue.Title}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Priority:</span> {{currentIssue.Priority.Name}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
-<p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentIssue.Labels | arrayFilter: ','}}</p>
+<div class="container">
+    <h3>Issue {{currentIssue.Title}}</h3>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>Issue Details</h4>
+            <p class="projectsFontSize"><span class="projectTitles">Issue Title:</span> {{currentIssue.Title}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Priority:</span> {{currentIssue.Priority.Name}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Labels:</span> {{currentIssue.Labels | arrayFilter: ','}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Status:</span> {{currentIssue.Status.Name}}</p>
+        </div>
+        <div class="col-sm-6" class="form-horizontal">
+            <h4>Comments</h4>
+            <p ng-repeat="comment in issueComments" class="projectsFontSize">
+                {{comment.CreatedOn | date:'dd MMM yyyy'}} by <span class="projectTitles">
+                {{comment.Author.Username}}</span> --- {{comment.Text}}</p>
+        </div>
+    </div>
+</div>
+<button ng-click="editIssue()" class="btn btn-default">Edit</button>
