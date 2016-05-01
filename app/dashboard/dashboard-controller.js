@@ -43,7 +43,7 @@ angular
 
             // Panel with all issues assigned to the current user
             $scope.getIssues = function getIssues() {
-                issuesService.getAssignedToCurrentUser('DueDate', $scope.projectsParams1.pageSize, $scope.projectsParams1.startPage)
+                issuesService.getAssignedToCurrentUser('DueDate desc', $scope.projectsParams1.pageSize, $scope.projectsParams1.startPage)
                     .then(function (success) {
                         $scope.assignedIssues = success.Issues;
                         $scope.assignedIssuesTotalNumber = success.TotalCount;
