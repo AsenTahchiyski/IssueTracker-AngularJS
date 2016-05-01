@@ -1,7 +1,7 @@
 <div class="container">
     <h3>Issue {{currentIssue.Title}}</h3>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <h4>Issue Details</h4>
             <p class="projectsFontSize"><span class="projectTitles">Issue Title:</span> {{currentIssue.Title}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
@@ -16,20 +16,20 @@
                 <span class="label label-default" ng-repeat="label in currentIssue.Labels">{{label.Name}}</span>
             </p>
         </div>
-        <div class="col-sm-6" class="form-horizontal">
+        <div class="col-sm-7" class="form-horizontal">
             <h4>Comments</h4>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>Added</td>
-                    <td>Author</td>
+                    <td class="date-cell">Added</td>
+                    <td class="author-cell">Author</td>
                     <td>Content</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="comment in issueComments">
-                    <td>{{comment.CreatedOn | date:'dd MMM yy'}}</td>
-                    <td>{{comment.Author.Username}}</td>
+                    <td class="date-cell">{{comment.CreatedOn | date:'dd MMM yy'}}</td>
+                    <td class="author-cell">{{comment.Author.Username}}</td>
                     <td>{{comment.Text}}</td>
                 </tr>
                 </tbody>

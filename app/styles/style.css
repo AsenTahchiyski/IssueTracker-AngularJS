@@ -56,3 +56,16 @@ footer {
 footer span {
     margin-left: 2%;
 }
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.date-cell {
+    width: 7em;
+}
+
+.author-cell {
+    width: 10em;
+}
