@@ -51,6 +51,10 @@ angular
                         $('.modal-backdrop').remove();
                         $route.reload();
                     })
+            };
+
+            $scope.backToProject = function() {
+                $location.path('/projects/' + $scope.currentIssue.Project.Id);
             }
         }
     ]);

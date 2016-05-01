@@ -34,6 +34,10 @@ angular
             $scope.goToOwnIssue = function(issueId) {
                 $location.path('/issues/' + issueId);
             };
+            
+            $scope.goToDashboard = function() {
+                $location.path('/');
+            };
 
             issuesService.getAllFor($routeParams.id)
                 .then(function(success) {

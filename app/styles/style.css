@@ -13,6 +13,7 @@ body {
 
 div.jumbotron.ng-scope {
     padding: 10px 20px;
+    margin-bottom: 0;
 }
 
 h3, h4 {
@@ -41,4 +42,17 @@ form.tab-form-demo .tab-pane {
 .label {
     margin: 1px;
     font-weight: normal;
+}
+
+footer {
+    margin-top: 2%;
+    text-align: center;
+}
+
+.footer-img {
+    width: 3%;
+}
+
+footer span {
+    margin-left: 2%;
 }
