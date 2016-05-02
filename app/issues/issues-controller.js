@@ -14,11 +14,17 @@ angular
         'issuesService',
         '$location',
         '$route',
-        function IssuesCtrl($scope, $routeParams, issuesService, $location, $route) {
+        'projectsService',
+        function IssuesCtrl($scope, $routeParams, issuesService, $location, $route, projectsService) {
             $scope.getById = function() {
                 issuesService.getById($routeParams.id)
                     .then(function(success) {
                         $scope.currentIssue = success;
+                        $scope.isAssignee = success.Assignee.Id == sessionStorage['userId'] && !!sessionStorage['userId'];
+                        projectsService.getById(success.Project.Id)
+                            .then(function(proj) {
+                                $scope.isLead = proj.Lead.Id == sessionStorage['userId'];
+                            })
                     });
             };
             $scope.getById();
@@ -26,7 +32,7 @@ angular
             $scope.editIssue = function() {
                 $location.path('issues/' + $routeParams.id + '/edit');
             };
-            
+
             function getComments() {
                 issuesService.getComments($routeParams.id)
                     .then(function(success) {
@@ -55,6 +61,6 @@ angular
 
             $scope.backToProject = function() {
                 $location.path('/projects/' + $scope.currentIssue.Project.Id);
-            }
+            };
         }
     ]);

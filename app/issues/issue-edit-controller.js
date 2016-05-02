@@ -14,7 +14,8 @@ angular
         'issuesService',
         '$routeParams',
         '$location',
-        function EditIssueCtrl($scope, usersService, issuesService, $routeParams, $location) {
+        'projectsService',
+        function EditIssueCtrl($scope, usersService, issuesService, $routeParams, $location, projectsService) {
             // get all users for the dropdown menu
             usersService.getAll().then(function (success) {
                 $scope.allUsers = success;
@@ -25,6 +26,13 @@ angular
             // get issue details
             issuesService.getById($routeParams.id)
                 .then(function (success) {
+                    projectsService.getById(success.Project.Id)
+                        .then(function (proj) {
+                            if (sessionStorage['userId'] != proj.Lead.Id) {
+                                $location.path('/issues/' + $routeParams.id);
+                            }
+                        });
+
                     $scope.editedIssue = success;
                     var allAvailableStatuses = [];
                     allAvailableStatuses.push(success.Status);

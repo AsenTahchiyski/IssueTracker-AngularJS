@@ -18,8 +18,10 @@ angular
                 .then(function (success) {
                     $scope.editedProject = success;
                     $scope.editedProject.LeadId = $scope.editedProject.Lead.Id;
-                }, function (error) {
-                    console.error(error);
+
+                    if (sessionStorage['userId'] != success.Lead.Id) {
+                        $location.path('/projects/' + $routeParams.id);
+                    }
                 });
 
             $scope.edit = function () {
@@ -42,4 +44,5 @@ angular
                     });
             };
         }
-    ]);
+    ])
+;

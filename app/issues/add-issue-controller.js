@@ -19,6 +19,10 @@ angular
         '$sce',
         '$q',
         function AddIssueCtrl($scope, issuesService, $location, $routeParams, usersService, projectsService, labelsService, $sce, $q) {
+            $scope.backToProject = function() {
+                $location.path('/projects/' + $routeParams.id);
+            };
+
             $scope.addIssue = function (issueToAdd) {
                 if($scope.dirty.value) {
                     var labels = $scope.dirty.value.split(',');
@@ -45,6 +49,10 @@ angular
                 .then(function (success) {
                     $scope.addIssueProjectName = success.Name;
                     $scope.addIssueProjectPriorities = success.Priorities;
+                    if (sessionStorage['userId'] != success.Lead.Id) {
+                        $location.path('/projects/' + $routeParams.id);
+                    }
+                    
                 }, function (error) {
                     console.error(error);
                 });

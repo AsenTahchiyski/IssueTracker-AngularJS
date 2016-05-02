@@ -18,6 +18,11 @@ angular
                     .then(function (success) {
                         sessionStorage['authToken'] = success.data['access_token'];
                         $location.path('/');
+                        usersService.getCurrent().then(function(userDetails) {
+                            sessionStorage['userId'] = userDetails.Id;
+                            sessionStorage['isAdmin'] = userDetails.isAdmin;
+                            sessionStorage['username'] = userDetails.Username;
+                        })
                     }, function (error) {
                         console.error(error);
                     })
