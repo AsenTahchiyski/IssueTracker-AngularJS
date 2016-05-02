@@ -21,6 +21,7 @@ angular
                 $location.path('/login');
             }
 
+            // pagination params
             $scope.projectsParams1 = {
                 'startPage': 1,
                 'pageSize': ISSUES_PER_PAGE,

@@ -14,11 +14,15 @@ angular
         'projectsService',
         '$location',
         'issuesService',
-        function ProjectsCtrl($scope, $routeParams, projectsService, $location, issuesService) {
+        'usersService',
+        function ProjectsCtrl($scope, $routeParams, projectsService, $location, issuesService, usersService) {
             $scope.getById = function() {
                 projectsService.getById($routeParams.id)
                     .then(function(success) {
                         $scope.currentProject = success;
+                        usersService.getCurrent().then(function(success) {
+                            $scope.isLead = $scope.currentProject.Lead.Id == success.Id;
+                        })
                     });
             };
             $scope.getById();

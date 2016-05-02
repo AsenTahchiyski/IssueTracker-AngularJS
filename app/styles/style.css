@@ -69,3 +69,7 @@ table {
 .author-cell {
     width: 10em;
 }
+
+button:hover {
+    opacity: 0.7;
+}

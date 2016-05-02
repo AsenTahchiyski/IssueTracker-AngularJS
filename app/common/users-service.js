@@ -60,6 +60,12 @@ angular
                 return deferred.promise;
             }
 
+            function isAdmin() {
+                getCurrent().then(function (success) {
+                    return success.isAdmin;
+                })
+            }
+
             function makeAdmin(userId) {
                 getCurrent().then(function (currentUser) {
                     if (!currentUser.isAdmin) {
@@ -106,7 +112,8 @@ angular
                 getAll: getAll,
                 getCurrent: getCurrent,
                 changePassword: changePassword,
-                makeAdmin: makeAdmin
+                makeAdmin: makeAdmin,
+                isAdmin: isAdmin
             }
         }
     ]);
