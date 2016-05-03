@@ -65,6 +65,10 @@ angular
                     }, function (error) {
                         notifier.error(error.statusText);
                     })
+            };
+
+            $scope.goBack = function() {
+                $location.path('issues/' + $routeParams.id);
             }
         }
     ]);
