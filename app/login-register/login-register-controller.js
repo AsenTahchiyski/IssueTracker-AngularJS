@@ -17,26 +17,26 @@ angular
             $scope.login = function (loginUser) {
                 usersService.login(loginUser)
                     .then(function (success) {
-                        notifier.success('great success');
-                        console.log(success);
                         sessionStorage['authToken'] = success.data['access_token'];
                         $location.path('/');
                         usersService.getCurrent().then(function(userDetails) {
+                            notifier.success('Welcome, ' + userDetails.Username + '!');
                             sessionStorage['userId'] = userDetails.Id;
                             sessionStorage['isAdmin'] = userDetails.isAdmin;
                             sessionStorage['username'] = userDetails.Username;
                         })
                     }, function (error) {
-                        console.error(error);
+                        notifier.error(error.data.error_description);
                     })
             };
 
             $scope.register = function (regUser) {
                 usersService.register(regUser)
                     .then(function () {
+                        notifier.success('Registration successful.');
                         $scope.login(regUser);
                     }, function (error) {
-                        console.error(error);
+                        notifier.error(error.statusText);
                     })
             };
         }

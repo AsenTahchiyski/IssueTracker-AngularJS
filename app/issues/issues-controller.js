@@ -15,51 +15,59 @@ angular
         '$location',
         '$route',
         'projectsService',
-        function IssuesCtrl($scope, $routeParams, issuesService, $location, $route, projectsService) {
-            $scope.getById = function() {
+        'notifier',
+        function IssuesCtrl($scope, $routeParams, issuesService, $location, $route, projectsService, notifier) {
+            $scope.getById = function () {
                 issuesService.getById($routeParams.id)
-                    .then(function(success) {
+                    .then(function (success) {
                         $scope.currentIssue = success;
                         $scope.isAssignee = success.Assignee.Id == sessionStorage['userId'] && !!sessionStorage['userId'];
                         projectsService.getById(success.Project.Id)
-                            .then(function(proj) {
+                            .then(function (proj) {
                                 $scope.isLead = proj.Lead.Id == sessionStorage['userId'];
                             })
                     });
             };
             $scope.getById();
 
-            $scope.editIssue = function() {
+            $scope.editIssue = function () {
                 $location.path('issues/' + $routeParams.id + '/edit');
             };
 
             function getComments() {
                 issuesService.getComments($routeParams.id)
-                    .then(function(success) {
+                    .then(function (success) {
                         $scope.issueComments = success;
                     });
             }
+
             getComments();
 
-            $scope.addComment = function() {
+            $scope.addComment = function () {
                 issuesService.addComment($routeParams.id, $scope.addCommentDescription)
-                    .then(function() {
+                    .then(function () {
                         getComments();
                         $('.modal-backdrop').remove();
+                        notifier.success('Comment added.');
                         $route.reload();
+                    }, function (error) {
+                        notifier.error(error.statusText);
                     })
             };
 
-            $scope.changeStatus = function() {
+            $scope.changeStatus = function () {
                 var newStatus = $scope.newStatus;
                 issuesService.changeStatus($routeParams.id, newStatus)
-                    .then(function() {
+                    .then(function () {
                         $('.modal-backdrop').remove();
+                        notifier.success('Status changed.');
                         $route.reload();
+                    }, function (error) {
+                        notifier.error(error.statusText);
                     })
             };
 
-            $scope.backToProject = function() {
+            $scope.backToProject = function () {
                 $location.path('/projects/' + $scope.currentIssue.Project.Id);
             };
         }

@@ -4,7 +4,7 @@ angular
     .module('issueTracker.services.notifier', [])
     .config(['growlProvider',
         function (growlProvider) {
-            growlProvider.globalTimeToLive(5000);
+            growlProvider.globalTimeToLive(4000);
             // growlProvider.globalInlineMessages(true);
         }])
     .factory('notifier', [

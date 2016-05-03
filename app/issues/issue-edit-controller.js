@@ -15,7 +15,8 @@ angular
         '$routeParams',
         '$location',
         'projectsService',
-        function EditIssueCtrl($scope, usersService, issuesService, $routeParams, $location, projectsService) {
+        'notifier',
+        function EditIssueCtrl($scope, usersService, issuesService, $routeParams, $location, projectsService, notifier) {
             // get all users for the dropdown menu
             usersService.getAll().then(function (success) {
                 $scope.allUsers = success;
@@ -59,9 +60,10 @@ angular
                     editedIssue.Priority.Id,
                     labels)
                     .then(function (success) {
+                        notifier.success('Issue edited.');
                         $location.path('/issues/' + $routeParams.id);
                     }, function (error) {
-                        console.error(error);
+                        notifier.error(error.statusText);
                     })
             }
         }

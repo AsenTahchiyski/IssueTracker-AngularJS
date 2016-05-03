@@ -11,12 +11,17 @@ angular
         '$scope',
         '$location',
         '$timeout',
-        function ($scope, $location, $timeout) {
+        'notifier',
+        function ($scope, $location, $timeout, notifier) {
             $scope.logout = function () {
                 sessionStorage.removeItem('authToken');
-                $timeout(function() {
-                    $scope.$apply(function() {
+                sessionStorage.removeItem('userId');
+                sessionStorage.removeItem('isAdmin');
+                sessionStorage.removeItem('username');
+                $timeout(function () {
+                    $scope.$apply(function () {
                         $location.path('/login');
+                        notifier.success('Logout successful.');
                     });
                 }, 100);
             };
