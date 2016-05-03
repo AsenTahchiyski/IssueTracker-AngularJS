@@ -73,3 +73,14 @@ table {
 button:hover {
     opacity: 0.7;
 }
+
+growl-notifications{
+    position: fixed;
+    top: 150px;
+    right: 10px;
+}
+growl-notification{
+    border: 1px solid black;
+    padding: 15px 30px;
+    margin-bottom: 15px;
+}

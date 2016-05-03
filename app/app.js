@@ -23,7 +23,10 @@ angular
         'MassAutoComplete',
         'ngSanitize',
         'issueTracker.controllers.editIssue',
-        'issueTracker.controllers.profile'
+        'issueTracker.controllers.profile',
+        'ngAnimate',
+        'angular-growl',
+        'issueTracker.services.notifier'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

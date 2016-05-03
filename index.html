@@ -22,6 +22,10 @@
     <script src="app/libs/massautocomplete.min.js"></script>
     <script src="app/libs/angular-sanitize.1.5.3.min.js"></script>
     <link rel="stylesheet" href="app/libs/massautocomplete.theme.css">
+    <!--Notifications-->
+    <script src="app/libs/angular-animate.js"></script>
+    <script src="app/libs/angular-growl.js"></script>
+    <link rel="stylesheet" href="app/libs/angular-growl.css">
 </head>
 
 <body>
@@ -36,6 +40,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-10 col-sm-6 container">
                 <!--Angular Content-->
+                <div growl ></div>
                 <div ng-view/>
             </div>
         </div>
@@ -76,5 +81,6 @@
 <script src="app/issues/add-issue-controller.js"></script>
 <script src="app/issues/issue-edit-controller.js"></script>
 <script src="app/profile/profile-controller.js"></script>
+<script src="app/common/notification-service.js"></script>
 </body>
 </html>

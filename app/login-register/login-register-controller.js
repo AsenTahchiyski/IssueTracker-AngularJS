@@ -12,10 +12,13 @@ angular
         '$scope',
         'usersService',
         '$location',
-        function LoginRegister($scope, usersService, $location) {
+        'notifier',
+        function LoginRegister($scope, usersService, $location, notifier) {
             $scope.login = function (loginUser) {
                 usersService.login(loginUser)
                     .then(function (success) {
+                        notifier.success('great success');
+                        console.log(success);
                         sessionStorage['authToken'] = success.data['access_token'];
                         $location.path('/');
                         usersService.getCurrent().then(function(userDetails) {
