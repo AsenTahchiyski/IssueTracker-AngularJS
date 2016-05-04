@@ -46,6 +46,10 @@ angular
 
             $scope.addProject = function() {
                 $location.path('/projects/add');
+            };
+            
+            $scope.goToProject = function (id) {
+                $location.path('/projects/' + id);
             }
         }
     ]);

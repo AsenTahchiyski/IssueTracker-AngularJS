@@ -1,0 +1,52 @@
+<h3>Add Project</h3>
+
+<div class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectName">Name</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="projectName" ng-model="newProject.Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="projectDescription" class="col-lg-2 control-label projectsFontSize">Description</label>
+            <div class="col-lg-5">
+                <textarea class="form-control" rows="3" id="projectDescription"
+                          ng-model="newProject.Description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectLead">Lead</label>
+            <div class="col-lg-5">
+                <select class="form-control" name="projectLead" id="projectLead"
+                        ng-options="user as user.Username for user in allUsers track by user.Id"
+                        ng-model="newProject.LeadId">
+                    <option value="user.Id">{{user.Username}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 projectsFontSize" for="projectPriorities">Priorities</label>
+            <div class="col-lg-5">
+                <input type="text" class="form-control" id="projectPriorities" ng-model="newProject.Priorities"
+                       placeholder="Enter priorities (separated by comma)">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="projectLabel" class="col-lg-2 control-label projectsFontSize">Labels</label>
+            <div class="col-lg-5">
+                <div mass-autocomplete>
+                    <input type="text" placeholder="Enter labels (separated by comma)" ng-model="dirty.value"
+                           id="projectLabel" class="form-control"
+                           mass-autocomplete-item="ac_option_delimited">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+
+<button ng-click="addProject(newProject)" class="btn btn-default">Create Project</button>
