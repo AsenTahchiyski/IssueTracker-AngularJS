@@ -27,7 +27,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="issue in currentProjIssues" ng-click="goToOwnIssue(issue.Id)">
+                <tr ng-repeat="issue in currentProjIssues" ng-click="goToOwnIssue(issue.Id)" ng-show="showAll">
+                    <td>{{issue.Id}}</td>
+                    <td class="col-md-2">{{issue.DueDate | date:'dd MMM yy'}}</td>
+                    <td>{{issue.Title}}</td>
+                    <td>{{issue.Status.Name}}</td>
+                </tr>
+
+                <tr ng-repeat="issue in currentProjCurrenUserIssues" ng-click="goToOwnIssue(issue.Id)" ng-hide="showAll">
                     <td>{{issue.Id}}</td>
                     <td class="col-md-2">{{issue.DueDate | date:'dd MMM yy'}}</td>
                     <td>{{issue.Title}}</td>
@@ -35,6 +42,8 @@
                 </tr>
                 </tbody>
             </table>
+            <button class="btn btn-default" ng-click="toggleShowAll()" ng-hide="showAll">Show All</button>
+            <button class="btn btn-default" ng-click="toggleShowAll()" ng-show="showAll">Show Mine</button>
         </div>
     </div>
 </div>

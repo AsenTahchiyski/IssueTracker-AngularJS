@@ -46,6 +46,14 @@ angular
             issuesService.getAllFor($routeParams.id)
                 .then(function(success) {
                     $scope.currentProjIssues = success;
-                })
+                    $scope.currentProjCurrenUserIssues = success.filter(function(i) {
+                        return i.Assignee.Id == sessionStorage['userId'];
+                    })
+                });
+
+            $scope.showAll = false;
+            $scope.toggleShowAll = function() {
+                $scope.showAll = !$scope.showAll;
+            };
         }
     ]);
