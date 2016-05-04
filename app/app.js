@@ -26,7 +26,8 @@ angular
         'issueTracker.controllers.profile',
         'ngAnimate',
         'angular-growl',
-        'issueTracker.services.notifier'
+        'issueTracker.services.notifier',
+        'issueTracker.controllers.allProjects'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

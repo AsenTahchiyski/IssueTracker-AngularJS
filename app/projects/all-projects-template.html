@@ -1,0 +1,27 @@
+<h3>Dashboard</h3>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Lead</td>
+            <td>Labels</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in allProjects" ng-click="goToProject(projectLead.Id)">
+            <td>{{project.Name}}</td>
+            <td>{{project.Lead.Username}}</td>
+            <td><span class="label label-default" ng-repeat="label in project.Labels">{{label.Name}}</span></td>
+        </tr>
+        </tbody>
+    </table>
+    <uib-pagination total-items="totalProjects" ng-model="projectsParams.startPage"
+                    max-size="maxSize" class="pagination-sm"
+                    boundary-links="true" rotate="false" items-per-page="itemsPerPage"
+                    ng-change="getAll(projectsParams.startPage)"
+                    ng-if="totalProjects > projectsParams.pageSize">
+    </uib-pagination>
+    <button class="btn btn-default" ng-click="addProject()">Add New Project</button>
+</div>
