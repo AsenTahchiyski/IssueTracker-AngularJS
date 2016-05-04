@@ -58,8 +58,9 @@ angular
                 usersService.getCurrent()
                     .then(function (currentUserData) {
                         // get current user
-                        projectsService.getByFilter('Lead.Username', currentUserData.Username,
-                            $scope.projectsParams2.pageSize, $scope.projectsParams2.startPage)
+                        $scope.isAdmin = currentUserData.isAdmin;
+                        projectsService.getByFilter($scope.projectsParams2.pageSize, $scope.projectsParams2.startPage,
+                            'Lead.Username', currentUserData.Username)
                             .then(function (projects) {
                                 $scope.totalLedProjects = projects.data.TotalCount;
                                 // get projects led
@@ -77,6 +78,10 @@ angular
 
             $scope.goToIssue = function (id) {
                 $location.path('issues/' + id);
+            };
+
+            $scope.go = function (path) {
+                $location.path(path);
             };
 
             // Panel with all projects that have issues assigned to the current user

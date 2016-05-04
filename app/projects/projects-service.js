@@ -32,21 +32,6 @@ angular
                 return deferred.promise;
             }
 
-            // function getByFilter(filter, value, pageSize, pageNumber) {
-            //     // build URL
-            //     var requestUrl = BASE_URL + 'projects/?' + 'pageSize=' + pageSize + '&pageNumber=' + pageNumber +
-            //         '&filter=' + filter + '=="' + value + '"';
-            //     var deferred = $q.defer();
-            //     $http.get(requestUrl, headerService.getAuthAndJSONContentHeader())
-            //         .then(function (success) {
-            //             deferred.resolve(success);
-            //         }, function (error) {
-            //             deferred.reject(error);
-            //         });
-            //
-            //     return deferred.promise;
-            // }
-
             function getByFilter(pageSize, pageNumber, filter, value) {
                 // build URL
                 var requestUrl = BASE_URL + 'projects/?filter=';
