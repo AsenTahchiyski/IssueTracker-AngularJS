@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.services.projects', [])
@@ -35,7 +35,7 @@ angular
             function getByFilter(pageSize, pageNumber, filter, value) {
                 // build URL
                 var requestUrl = BASE_URL + 'projects/?filter=';
-                if(filter && value) {
+                if (filter && value) {
                     requestUrl += filter + '="' + value + '"';
                 }
 
@@ -89,13 +89,13 @@ angular
 
             function edit(id, name, description, leadId, labels, priorities) {
                 var data = 'Name=' + name + '&Description=' + description;
-                if(labels.length) {
+                if (labels.length) {
                     for (var i = 0; i < labels.length; i++) {
                         data += '&labels[' + i + '].Name=' + labels[i];
                     }
                 }
 
-                if(priorities.length) {
+                if (priorities.length) {
                     for (var j = 0; j < priorities.length; j++) {
                         data += '&priorities[' + j + '].Name=' + priorities[j];
                     }

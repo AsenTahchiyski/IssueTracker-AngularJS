@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.services.labels', [])
@@ -18,10 +18,10 @@ angular
                         console.error(error);
                         deferred.reject(error);
                     });
-                
+
                 return deferred.promise;
             }
-            
+
             return {
                 getFiltered: getFiltered
             }

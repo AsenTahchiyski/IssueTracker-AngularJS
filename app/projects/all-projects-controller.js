@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.controllers.allProjects', [])
@@ -25,29 +25,29 @@ angular
                 'pageSize': ITEMS_PER_PAGE,
                 'filter': ''
             };
-            
+
             $scope.itemsPerPage = ITEMS_PER_PAGE;
 
             usersService.getCurrent()
-                .then(function(user) {
-                    if(!user.isAdmin) {
+                .then(function (user) {
+                    if (!user.isAdmin) {
                         $location.path('/');
                     }
                 });
 
-            $scope.getAll = function() {
+            $scope.getAll = function () {
                 projectsService.getByFilter(ITEMS_PER_PAGE, $scope.projectsParams.startPage)
-                    .then(function(projects) {
+                    .then(function (projects) {
                         $scope.allProjects = projects.data.Projects;
                         $scope.totalProjects = projects.data.TotalCount
                     })
             };
             $scope.getAll();
 
-            $scope.addProject = function() {
+            $scope.addProject = function () {
                 $location.path('/projects/add');
             };
-            
+
             $scope.goToProject = function (id) {
                 $location.path('/projects/' + id);
             }

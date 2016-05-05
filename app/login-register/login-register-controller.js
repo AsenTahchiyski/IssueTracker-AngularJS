@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.controllers.loginRegister', ['ngRoute'])
@@ -19,7 +19,7 @@ angular
                     .then(function (success) {
                         sessionStorage['authToken'] = success.data['access_token'];
                         $location.path('/');
-                        usersService.getCurrent().then(function(userDetails) {
+                        usersService.getCurrent().then(function (userDetails) {
                             notifier.success('Welcome, ' + userDetails.Username + '!');
                             sessionStorage['userId'] = userDetails.Id;
                             sessionStorage['isAdmin'] = userDetails.isAdmin;

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.services.issues', [])
@@ -159,7 +159,7 @@ angular
             function addComment(issueId, text) {
                 var url = BASE_URL + 'issues/' + issueId + '/comments';
                 var deferred = $q.defer();
-                $http.post(url, {Text:text}, headerService.getAuthHeader())
+                $http.post(url, {Text: text}, headerService.getAuthHeader())
                     .then(function (success) {
                         deferred.resolve(success.data);
                     }, function (error) {

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.controllers.addProject', [])
@@ -28,16 +28,16 @@ angular
                 // get priorities in proper format
                 var prioriTemp = project.Priorities.split(','),
                     priorities = [];
-                prioriTemp.forEach(function(p) {
+                prioriTemp.forEach(function (p) {
                     priorities.push(p.trim())
                 });
 
-                if($scope.dirty.value) {
+                if ($scope.dirty.value) {
                     var labels = $scope.dirty.value.split(',');
                 }
 
                 projectsService.add(project.Name, project.Description, project.LeadId.Id, labels, priorities)
-                    .then(function(success) {
+                    .then(function (success) {
                         notifier.success(success.statusText);
                         $location.path('/');
                     }, function (error) {
@@ -46,7 +46,7 @@ angular
             };
 
             usersService.getAll()
-                .then(function(success) {
+                .then(function (success) {
                     $scope.allUsers = success;
                 });
 

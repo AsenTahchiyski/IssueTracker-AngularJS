@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.controllers.editIssue', [])
@@ -67,7 +67,7 @@ angular
                     })
             };
 
-            $scope.goBack = function() {
+            $scope.goBack = function () {
                 $location.path('issues/' + $routeParams.id);
             }
         }

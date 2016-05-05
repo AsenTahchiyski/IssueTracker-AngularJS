@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 angular
     .module('issueTracker.services.headerBuilder', [])
@@ -9,7 +9,7 @@ angular
                     headers: {'Authorization': 'Bearer ' + sessionStorage['authToken']}
                 };
             }
-            
+
             function getWWWContentHeader() {
                 return {
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -21,7 +21,7 @@ angular
                     headers: {'Content-Type': 'application/json'}
                 };
             }
-            
+
             function getAuthAndWWWContentHeader() {
                 return {
                     headers: {
@@ -39,7 +39,7 @@ angular
                     }
                 }
             }
-            
+
             return {
                 getAuthHeader: getAuthHeader,
                 getWWWContentHeader: getWWWContentHeader,

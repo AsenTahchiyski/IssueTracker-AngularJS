@@ -34,7 +34,8 @@
                     <td>{{issue.Status.Name}}</td>
                 </tr>
 
-                <tr ng-repeat="issue in currentProjCurrenUserIssues" ng-click="goToOwnIssue(issue.Id)" ng-hide="showAll">
+                <tr ng-repeat="issue in currentProjCurrenUserIssues" ng-click="goToOwnIssue(issue.Id)"
+                    ng-hide="showAll">
                     <td>{{issue.Id}}</td>
                     <td class="col-md-2">{{issue.DueDate | date:'dd MMM yy'}}</td>
                     <td>{{issue.Title}}</td>

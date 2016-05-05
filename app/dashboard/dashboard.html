@@ -42,7 +42,8 @@
                 <tr ng-repeat="projectLead in projectsLead" ng-click="goToProject(projectLead.Id)">
                     <td>{{projectLead.Name}}</td>
                     <td>{{projectLead.Lead.Username}}</td>
-                    <td><span class="label label-default" ng-repeat="label in projectLead.Labels">{{label.Name}}</span></td>
+                    <td><span class="label label-default" ng-repeat="label in projectLead.Labels">{{label.Name}}</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -68,7 +69,8 @@
                 <tr ng-repeat="projectIssue in totalProjectsWithIssuesAssigned" ng-click="goToProject(projectIssue.Id)">
                     <td>{{projectIssue.Name}}</td>
                     <td>{{projectIssue.Lead.Username}}</td>
-                    <td><span class="label label-default" ng-repeat="label in projectIssue.Labels">{{label.Name}}</span></td>
+                    <td><span class="label label-default" ng-repeat="label in projectIssue.Labels">{{label.Name}}</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>
