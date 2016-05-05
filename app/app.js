@@ -34,5 +34,5 @@ angular
         $routeProvider.otherwise({redirectTo: '/login'});
     }])
     .constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/')
-    .constant('ISSUES_PER_PAGE', 10);
+    .constant('ITEMS_PER_PAGE', 10);
 

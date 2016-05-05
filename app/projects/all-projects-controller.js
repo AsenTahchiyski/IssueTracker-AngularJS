@@ -12,9 +12,9 @@ angular
         '$scope',
         'projectsService',
         'usersService',
-        'ISSUES_PER_PAGE',
+        'ITEMS_PER_PAGE',
         '$location',
-        function AllProjectsCtrl($scope, projectsService, usersService, ISSUES_PER_PAGE, $location) {
+        function AllProjectsCtrl($scope, projectsService, usersService, ITEMS_PER_PAGE, $location) {
             if (!sessionStorage['authToken']) {
                 $location.path('/login');
             }
@@ -22,11 +22,11 @@ angular
             // pagination params
             $scope.projectsParams = {
                 'startPage': 1,
-                'pageSize': ISSUES_PER_PAGE,
+                'pageSize': ITEMS_PER_PAGE,
                 'filter': ''
             };
             
-            $scope.itemsPerPage = ISSUES_PER_PAGE;
+            $scope.itemsPerPage = ITEMS_PER_PAGE;
 
             usersService.getCurrent()
                 .then(function(user) {
@@ -36,7 +36,7 @@ angular
                 });
 
             $scope.getAll = function() {
-                projectsService.getByFilter(ISSUES_PER_PAGE, $scope.projectsParams.startPage)
+                projectsService.getByFilter(ITEMS_PER_PAGE, $scope.projectsParams.startPage)
                     .then(function(projects) {
                         $scope.allProjects = projects.data.Projects;
                         $scope.totalProjects = projects.data.TotalCount

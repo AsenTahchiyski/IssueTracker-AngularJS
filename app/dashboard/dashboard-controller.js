@@ -15,8 +15,8 @@ angular
         'usersService',
         'issuesService',
         'labelsService',
-        'ISSUES_PER_PAGE',
-        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ISSUES_PER_PAGE) {
+        'ITEMS_PER_PAGE',
+        function ($scope, $location, projectsService, usersService, issuesService, labelsService, ITEMS_PER_PAGE) {
             if (!sessionStorage['authToken']) {
                 $location.path('/login');
             }
@@ -24,23 +24,23 @@ angular
             // pagination params
             $scope.projectsParams1 = {
                 'startPage': 1,
-                'pageSize': ISSUES_PER_PAGE,
+                'pageSize': ITEMS_PER_PAGE,
                 'filter': ''
             };
 
             $scope.projectsParams2 = {
                 'startPage': 1,
-                'pageSize': ISSUES_PER_PAGE,
+                'pageSize': ITEMS_PER_PAGE,
                 'filter': ''
             };
 
             $scope.projectsParams3 = {
                 'startPage': 1,
-                'pageSize': ISSUES_PER_PAGE,
+                'pageSize': ITEMS_PER_PAGE,
                 'filter': ''
             };
 
-            $scope.itemsPerPage = ISSUES_PER_PAGE;
+            $scope.itemsPerPage = ITEMS_PER_PAGE;
 
             // Panel with all issues assigned to the current user
             $scope.getIssues = function getIssues() {
