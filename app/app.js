@@ -28,7 +28,8 @@ angular
         'angular-growl',
         'issueTracker.services.notifier',
         'issueTracker.controllers.allProjects',
-        'issueTracker.controllers.addProject'
+        'issueTracker.controllers.addProject',
+        'issueTracker.controllers.makeAdmin'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});

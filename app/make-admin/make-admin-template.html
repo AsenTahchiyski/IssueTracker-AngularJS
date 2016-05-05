@@ -1,0 +1,14 @@
+<h3>Give Administrator Rights</h3>
+
+<div class="form-group">
+    <label class="control-label col-lg-2 projectsFontSize" for="userToMakeAdmin">User</label>
+    <div class="col-lg-5">
+        <select class="form-control" name="userToMakeAdmin" id="userToMakeAdmin"
+                ng-options="user as user.Username for user in allUsers track by user.Id"
+                ng-model="userId">
+            <option value="user.Id">{{user.Username}}</option>
+        </select>
+    </div>
+</div>
+
+<button ng-click="makeAdmin(userId)" class="btn btn-default">Make Admin</button>

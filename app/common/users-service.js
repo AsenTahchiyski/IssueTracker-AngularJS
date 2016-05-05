@@ -67,13 +67,13 @@ angular
             }
 
             function makeAdmin(userId) {
+                var deferred = $q.defer();
                 getCurrent().then(function (currentUser) {
                     if (!currentUser.isAdmin) {
                         console.error('Only admins can do that.');
                         return;
                     }
 
-                    var deferred = $q.defer();
                     var data = 'UserId=' + userId;
                     $http.put(BASE_URL + 'users/makeadmin', data, headerService.getAuthAndWWWContentHeader())
                         .then(function (success) {
@@ -81,11 +81,11 @@ angular
                         }, function (error) {
                             deferred.reject(error);
                         });
-
-                    return deferred.promise;
                 }, function (error) {
                     console.error(error);
                 });
+
+                return deferred.promise;
             }
 
             function changePassword(oldPass, newPass, confirmNewPass) {
