@@ -43,24 +43,20 @@
         </div>
 
         <div class="form-group">
-            <label for="addIssuePriority" class="col-lg-2 control-label projectsFontSize">Priorities</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="addIssuePriorities">Priorities</label>
             <div class="col-lg-5">
-                <select class="form-control" id="addIssuePriority" ng-model="editedProject.PriorityId">
-                    <option value="{{priority.Id}}" ng-repeat="priority in editedProject.Priorities">
-                        {{priority.Name}}
-                    </option>
-                </select>
+                <input type="text" class="form-control" id="addIssuePriorities" ng-model="editedProject.EditPriorities">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize">Labels</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="projectEditLabels">Labels</label>
             <div class="col-lg-5">
-                <span class="label label-default" ng-repeat="label in editedProject.Labels">{{label.Name}}</span>
+                <input type="text" class="form-control" id="projectEditLabels" ng-model="editedProject.EditLabels">
             </div>
         </div>
     </fieldset>
 </div>
 
-<button ng-click="edit()" class="btn btn-default">Save</button>
+<button ng-click="edit(editedProject)" class="btn btn-default">Edit Project</button>
 <button ng-click="goToProject()" class="btn btn-default">Cancel</button>

@@ -20,6 +20,16 @@ angular
                 .then(function (success) {
                     $scope.editedProject = success;
                     $scope.editedProject.LeadId = $scope.editedProject.Lead.Id;
+                    var priorityNames = $scope.editedProject.Priorities
+                        .map(function (p) {
+                            return p.Name;
+                        });
+                    $scope.editedProject.EditPriorities = priorityNames.join(',');
+                    var labelNames = $scope.editedProject.Labels
+                        .map(function (p) {
+                            return p.Name;
+                        });
+                    $scope.editedProject.EditLabels = labelNames.join(',');
 
                     if (sessionStorage['userId'] != success.Lead.Id) {
                         $location.path('/projects/' + $routeParams.id);
@@ -30,19 +40,22 @@ angular
                 $scope.allUsers = success;
             });
 
-            $scope.edit = function () {
+
+            $scope.edit = function (project) {
                 var labelNames = [];
-                $scope.editedProject.Labels.forEach(function (l) {
-                    labelNames.push(l.Name);
-                });
+                project.EditLabels.split(',')
+                    .forEach(function (l) {
+                        labelNames.push(l.trim());
+                    });
 
                 var priorityNames = [];
-                $scope.editedProject.Priorities.forEach(function (p) {
-                    priorityNames.push(p.Name);
-                });
+                project.EditPriorities.split(',')
+                    .forEach(function (p) {
+                        priorityNames.push(p.trim());
+                    });
 
-                projectsService.edit($routeParams.id, $scope.editedProject.Name, $scope.editedProject.Description,
-                    $scope.editedProject.LeadId.Id, labelNames, priorityNames)
+                projectsService.edit($routeParams.id, project.Name, project.Description,
+                    project.LeadId.Id, labelNames, priorityNames)
                     .then(function (success) {
                         notifier.success('Project edited.');
                         $location.path('/projects/' + $routeParams.id);
@@ -50,8 +63,8 @@ angular
                         notifier.error(error.statusText);
                     });
             };
-            
-            $scope.goToProject = function() {
+
+            $scope.goToProject = function () {
                 $location.path('/projects/' + $routeParams.id);
             }
         }
