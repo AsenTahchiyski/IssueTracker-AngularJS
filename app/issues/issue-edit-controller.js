@@ -45,12 +45,20 @@ angular
                     $scope.availableStatuses = allAvailableStatuses;
                     $scope.currentStatus = success.Status;
                     $scope.priorities = success.Priority;
+                    var labels = $scope.editedIssue.Labels
+                        .map(function (p) {
+                            return p.Name;
+                        });
+                    $scope.editedIssue.EditLabels = labels.join(',');
                 });
 
             $scope.edit = function (editedIssue) {
-                var labels = editedIssue.Labels.map(function (l) {
-                    return l.Name;
-                });
+                var labelNames = [];
+                editedIssue.EditLabels.split(',')
+                    .forEach(function (l) {
+                        labelNames.push(l.trim());
+                    });
+
                 issuesService.update(
                     editedIssue.Id,
                     editedIssue.Title,
@@ -58,7 +66,7 @@ angular
                     editedIssue.DueDate,
                     editedIssue.Assignee.Id,
                     editedIssue.Priority.Id,
-                    labels)
+                    labelNames)
                     .then(function (success) {
                         notifier.success('Issue edited.');
                         $location.path('/issues/' + $routeParams.id);

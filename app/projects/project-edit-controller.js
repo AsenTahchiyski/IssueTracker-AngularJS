@@ -39,7 +39,6 @@ angular
                 $scope.allUsers = success;
             });
 
-
             $scope.edit = function (project) {
                 var labelNames = [];
                 project.EditLabels.split(',')
