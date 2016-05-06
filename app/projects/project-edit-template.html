@@ -3,28 +3,28 @@
 <div class="form-horizontal">
     <fieldset>
         <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize" for="projectEditName">Project Name</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="projectEditName">Name</label>
             <div class="col-lg-5">
                 <input type="text" class="form-control" id="projectEditName" ng-model="editedProject.Name">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize" for="projectId">Project Id:</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="projectId">Id:</label>
             <div class="col-lg-5">
                 <input class="form-control" id="projectId" type="text" ng-model="editedProject.Id" disabled="">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize" for="projectKey">Project Key:</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="projectKey">Key:</label>
             <div class="col-lg-5">
                 <input class="form-control" id="projectKey" type="text" ng-model="editedProject.ProjectKey" disabled="">
             </div>
         </div>
 
         <div class="form-group">
-            <label for="projectDescription" class="col-lg-2 control-label projectsFontSize">Project Description</label>
+            <label for="projectDescription" class="col-lg-2 control-label projectsFontSize">Description</label>
             <div class="col-lg-5">
                 <textarea class="form-control" rows="3" id="projectDescription"
                           ng-model="editedProject.Description"></textarea>
@@ -32,16 +32,13 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize" for="projectLead">Project Lead</label>
+            <label class="control-label col-lg-2 projectsFontSize" for="projectLead">Lead</label>
             <div class="col-lg-5">
-                <input type="text" class="form-control" id="projectLead" ng-model="editedProject.Lead.Username">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-lg-2 projectsFontSize" for="projectLeadId">Project Lead Id</label>
-            <div class="col-lg-5">
-                <input type="text" class="form-control" id="projectLeadId" ng-model="editedProject.LeadId">
+                <select class="form-control" name="projectLead" id="projectLead"
+                        ng-options="user as user.Username for user in allUsers track by user.Id"
+                        ng-model="editedProject.LeadId">
+                    <option value="editedProject.Id">{{user.Username}}</option>
+                </select>
             </div>
         </div>
 
@@ -66,3 +63,4 @@
 </div>
 
 <button ng-click="edit()" class="btn btn-default">Save</button>
+<button ng-click="goToProject()" class="btn btn-default">Cancel</button>

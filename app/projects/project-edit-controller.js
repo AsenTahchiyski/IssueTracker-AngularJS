@@ -14,7 +14,8 @@ angular
         'projectsService',
         '$location',
         'notifier',
-        function ProjectsEditCtrl($scope, $routeParams, projectsService, $location, notifier) {
+        'usersService',
+        function ProjectsEditCtrl($scope, $routeParams, projectsService, $location, notifier, usersService) {
             projectsService.getById($routeParams.id)
                 .then(function (success) {
                     $scope.editedProject = success;
@@ -24,6 +25,10 @@ angular
                         $location.path('/projects/' + $routeParams.id);
                     }
                 });
+
+            usersService.getAll().then(function (success) {
+                $scope.allUsers = success;
+            });
 
             $scope.edit = function () {
                 var labelNames = [];
@@ -37,7 +42,7 @@ angular
                 });
 
                 projectsService.edit($routeParams.id, $scope.editedProject.Name, $scope.editedProject.Description,
-                    $scope.editedProject.LeadId, labelNames, priorityNames)
+                    $scope.editedProject.LeadId.Id, labelNames, priorityNames)
                     .then(function (success) {
                         notifier.success('Project edited.');
                         $location.path('/projects/' + $routeParams.id);
@@ -45,6 +50,10 @@ angular
                         notifier.error(error.statusText);
                     });
             };
+            
+            $scope.goToProject = function() {
+                $location.path('/projects/' + $routeParams.id);
+            }
         }
     ])
 ;

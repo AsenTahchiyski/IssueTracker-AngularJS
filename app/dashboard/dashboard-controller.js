@@ -112,7 +112,7 @@ angular
 
                         $scope.totalProjectsIssues = $scope.totalProjectsWithIssuesAssigned.count || 0;
                     }, function (error) {
-                        console.error(error);
+                        // console.error(error);
                     })
             };
             $scope.getProjectsWithAssignedIssues();
