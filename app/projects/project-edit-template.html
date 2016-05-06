@@ -37,7 +37,7 @@
                 <select class="form-control" name="projectLead" id="projectLead"
                         ng-options="user as user.Username for user in allUsers track by user.Id"
                         ng-model="editedProject.LeadId">
-                    <option value="editedProject.Id">{{user.Username}}</option>
+                    <option value="user.Id" ng-selected="editedProject.Lead">{{user.Username}}</option>
                 </select>
             </div>
         </div>

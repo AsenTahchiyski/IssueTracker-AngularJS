@@ -7,9 +7,12 @@
             <p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Priority:</span> {{currentIssue.Priority.Name}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}
+            </p>
+            <p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd
+                MMM yyyy'}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}
+            </p>
             <p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Status:</span> {{currentIssue.Status.Name}}</p>
             <p><span class="projectTitles projectsFontSize">Labels:</span>
@@ -38,7 +41,9 @@
     </div>
 </div>
 <button ng-click="editIssue()" class="btn btn-default" ng-if="isLead">Edit</button>
-<button class="btn btn-default" data-toggle="modal" data-target="#commentModal" ng-if="isAssignee || isLead">Add Comment</button>
+<button class="btn btn-default" data-toggle="modal" data-target="#commentModal" ng-if="isAssignee || isLead">Add
+    Comment
+</button>
 <button class="btn btn-default" data-toggle="modal" data-target="#statusModal" ng-if="isAssignee">Change Status</button>
 <button ng-click="backToProject()" class="btn btn-default">< Back to Project</button>
 
@@ -56,8 +61,9 @@
                           placeholder="Comment description"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button ng-click="addComment()" type="submit" class="btn btn-default" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button ng-click="addComment()" type="submit" class="btn btn-default" data-dismiss="modal">Add Comment
+                </button>
             </div>
         </div>
     </div>
@@ -73,14 +79,16 @@
             </div>
             <div class="modal-body">
                 <select class="form-control" ng-model="newStatus">
-                    <option value="{{availableStatus.Id}}" ng-repeat="availableStatus in currentIssue.AvailableStatuses">
+                    <option value="{{availableStatus.Id}}"
+                            ng-repeat="availableStatus in currentIssue.AvailableStatuses">
                         {{availableStatus.Name}}
                     </option>
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button ng-click="changeStatus()" type="submit" class="btn btn-default" data-dismiss="modal">Save
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button ng-click="changeStatus()" type="submit" class="btn btn-default" data-dismiss="modal">Change
+                    Status
                 </button>
             </div>
         </div>

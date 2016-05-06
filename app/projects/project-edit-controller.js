@@ -19,7 +19,7 @@ angular
             projectsService.getById($routeParams.id)
                 .then(function (success) {
                     $scope.editedProject = success;
-                    $scope.editedProject.LeadId = $scope.editedProject.Lead.Id;
+                    $scope.editedProject.LeadId = $scope.editedProject.Lead;
                     var priorityNames = $scope.editedProject.Priorities
                         .map(function (p) {
                             return p.Name;
@@ -35,7 +35,6 @@ angular
                         $location.path('/projects/' + $routeParams.id);
                     }
                 });
-
             usersService.getAll().then(function (success) {
                 $scope.allUsers = success;
             });
