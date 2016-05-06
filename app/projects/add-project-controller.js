@@ -17,12 +17,17 @@ angular
         'labelsService',
         'usersService',
         'notifier',
-        function AddProjectCtrl($scope, projectsService, $location, $sce, $q, labelsService, usersService, notifier) {
-            if (!sessionStorage['authToken']) {
+        function AddProjectCtrl($scope, projectsService, $location, $sce, $q,
+                                labelsService, usersService, notifier) {
+            if (!sessionStorage['authToken'] || !sessionStorage['isAdmin']) {
                 $location.path('/login');
             }
 
-            // TODO: check for admin
+            usersService.getCurrent().then(function(user) {
+                if (!user.isAdmin) {
+                    $location.path('/');
+                }
+            });
 
             $scope.addProject = function (project) {
                 // get priorities in proper format
