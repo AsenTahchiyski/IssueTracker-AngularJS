@@ -81,5 +81,9 @@ angular
             $scope.ac_option_delimited = {
                 suggest: suggestLabelRemoteAndDelimited
             };
+
+            $scope.toDashboard = function() {
+                $location.path('/');
+            }
         }
     ]);
