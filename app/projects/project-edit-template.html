@@ -55,8 +55,12 @@
                 <input type="text" class="form-control" id="projectEditLabels" ng-model="editedProject.EditLabels">
             </div>
         </div>
+
+        <div class="form-group">
+            <div class="col-lg-10 col-md-offset-2">
+                <button ng-click="edit(editedProject)" class="btn btn-success">Edit Project</button>
+                <button ng-click="goToProject()" class="btn btn-default">Cancel</button>
+            </div>
+        </div>
     </fieldset>
 </div>
-
-<button ng-click="edit(editedProject)" class="btn btn-default">Edit Project</button>
-<button ng-click="goToProject()" class="btn btn-default">Cancel</button>

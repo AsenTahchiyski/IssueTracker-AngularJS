@@ -31,7 +31,10 @@ angular
                     }, function (error) {
                         notifier.error(error.data.Message);
                     })
-            }
+            };
 
+            $scope.toDashboard = function() {
+                $location.path('/');
+            }
         }
     ]);
