@@ -24,12 +24,11 @@
                 <input class="form-control" id="confirmNewPass" type="password" ng-model="passwordChange.confirm"/>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button ng-click="changePass()" type="submit" class="btn btn-default" data-dismiss="modal"
+                <button ng-click="changePass()" type="submit" class="btn btn-success" data-dismiss="modal"
                         ng-disabled="passwordChange.new != passwordChange.confirm ||
-                        !passwordChange.current.length || !passwordChange.new.length">
-                    Save
+                        !passwordChange.current.length || !passwordChange.new.length">Change Password
                 </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

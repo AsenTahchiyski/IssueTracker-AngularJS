@@ -3,20 +3,19 @@
     <div class="row">
         <div class="col-sm-5">
             <h4>Issue Details</h4>
-            <p class="projectsFontSize"><span class="projectTitles">Issue Title:</span> {{currentIssue.Title}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Issue Id:</span> {{currentIssue.Id}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Title:</span> {{currentIssue.Title}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Id:</span> {{currentIssue.Id}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Priority:</span> {{currentIssue.Priority.Name}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Assignee:</span> {{currentIssue.Assignee.Username}}
             </p>
-            <p class="projectsFontSize"><span class="projectTitles">Due Date:</span> {{currentIssue.DueDate | date:'dd
-                MMM yyyy'}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Status:</span> {{currentIssue.Status.Name}}</p>
+            <p class="projectsFontSize"><span class="projectTitles">Due Date:</span>
+                {{currentIssue.DueDate | date:'dd MMM yyyy'}}</p>
             <p class="projectsFontSize"><span class="projectTitles">Project Name:</span> {{currentIssue.Project.Name}}
             </p>
-            <p class="projectsFontSize"><span class="projectTitles">Project Id:</span> {{currentIssue.Project.Id}}</p>
-            <p class="projectsFontSize"><span class="projectTitles">Status:</span> {{currentIssue.Status.Name}}</p>
             <p><span class="projectTitles projectsFontSize">Labels:</span>
-                <span class="label label-default" ng-repeat="label in currentIssue.Labels">{{label.Name}}</span>
+            <span class="label label-default" ng-repeat="label in currentIssue.Labels">{{label.Name}}</span>
+            <p class="projectsFontSize"><span class="projectTitles">Description:</span> {{currentIssue.Description}}</p>
             </p>
         </div>
         <div class="col-sm-7" class="form-horizontal">
