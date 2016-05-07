@@ -29,7 +29,8 @@ angular
         'issueTracker.services.notifier',
         'issueTracker.controllers.allProjects',
         'issueTracker.controllers.addProject',
-        'issueTracker.controllers.makeAdmin'
+        'issueTracker.controllers.makeAdmin',
+        'angular-loading-bar'
     ])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.otherwise({redirectTo: '/login'});
